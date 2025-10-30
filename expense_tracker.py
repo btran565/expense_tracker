@@ -4,10 +4,6 @@ from datetime import date
 
 expenses = []
 
-def add_expense():
-    
-    return
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('add', help='add an expense')  #positional arguments
@@ -23,7 +19,7 @@ def main():
     #functionality 
     if args.add:
         if args.description & args.amount:
-            return
+            
         else:
             print("The 'add' argument requires the '--description' and '--amount' optional arguments to add a new expense.")
         
