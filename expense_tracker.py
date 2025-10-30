@@ -20,9 +20,14 @@ def main():
     parser.add_argument('--amount', type=int, help = 'amount of expense')
     args = parser.parse_args()
 
-    #functionality below
+    #functionality 
     if args.add:
-        print('You want to add an expense?')
+        if args.description & args.amount:
+            return
+        else:
+            print("The 'add' argument requires the '--description' and '--amount' optional arguments to add a new expense.")
+        
+
 
 if __name__ == '__main__':
     main()
