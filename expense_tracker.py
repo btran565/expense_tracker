@@ -1,8 +1,21 @@
 import sys
 import argparse
-from datetime import date
+
+parser = argparse.ArgumentParser()
+parser.add_argument('add', help='add an expense')  #positional arguments
+parser.add_argument('update', help='update an existing expense')
+parser.add_argument('delete', help='delete an existing expense')
+parser.add_argument('view', help='view all existing expenses')
+parser.add_argument('summarize', help='summarize all expenses')
+    
+parser.add_argument('--description', type=str, help = 'description of expense')    #optional arguments
+parser.add_argument('--amount', type=int, help = 'amount of expense')
+args = parser.parse_args()
+
 
 expenses = []
+def add_expense(expenses[]):
+    expenses.add[parser.description]
 
 def main():
     parser = argparse.ArgumentParser()
