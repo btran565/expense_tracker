@@ -13,17 +13,19 @@ args = parser.parse_args()
 
 expenses = []
 
-def add_data(new_expense):  #takes list of args and changes it into a dict with an int key
+def add_data(new_expense):  #takes list of args and appends it into a list of dicts. each dict has a int key and dict value
     new_id = len(expenses) + 1
     expenses.append(
         {
-            id: new_id, 
-            "date": new_expense[0], 
-            "description": new_expense[1], 
-            "amount": new_expense[2]
+            new_id: 
+            {
+                "date": new_expense[0], 
+                "description": new_expense[1], 
+                "amount": new_expense[2]
+            }
         })
-    print(f"add data works! {new_expense[0]} {new_expense[1]} {new_expense[2]}")
-    return id
+    print(f"Expense added successfully (ID: {new_id})")
+    return 
 
 def edit_data(action, id): #(str, int) update or delete functionality
     return #WIP
