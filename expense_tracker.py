@@ -12,7 +12,7 @@ parser.add_argument('--amount', default=0.00, type=float, help = 'amount of expe
 args = parser.parse_args()
 
 expenses = []
-def edit_data(action, expense): #(str, list), add returns int id
+def edit_data(action, id): #(str, int) update or delete functionality
     return #WIP
 
 def to_date(date_str):    #changes date string from arg value into date obj
