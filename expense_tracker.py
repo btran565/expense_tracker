@@ -13,8 +13,16 @@ args = parser.parse_args()
 
 expenses = []
 
-def add_data(expense):  #WIP
-
+def add_data(new_expense):  #takes list of args and changes it into a dict with an int key
+    new_id = len(expenses) + 1
+    expenses.append(
+        {
+            id: new_id, 
+            "date": new_expense[0], 
+            "description": new_expense[1], 
+            "amount": new_expense[2]
+        })
+    print(f"add data works! {new_expense[0]} {new_expense[1]} {new_expense[2]}")
     return id
 
 def edit_data(action, id): #(str, int) update or delete functionality
@@ -22,7 +30,7 @@ def edit_data(action, id): #(str, int) update or delete functionality
 
 def to_date(date_str):    #changes date string from arg value into date obj
     date_obj = date.fromisoformat(date_str)
-    return
+    return date_obj
 
 #def get_id():
 
@@ -32,8 +40,8 @@ def check_for_data():
 def main():
     #functionality 
     if args.action == "add":
-        
-        edit_data(args.action, [args.date, args.description, args.amount])
+        new_date = to_date(args.date)
+        add_data([new_date, args.description, args.amount])
         print(f"added expense: date:{args.date} desc:{args.description}  amount:${args.amount}")
         
    
