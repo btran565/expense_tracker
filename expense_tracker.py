@@ -15,9 +15,11 @@ expenses = []
 def edit_data(action, expense): #(str, list), add returns int id
     return #WIP
 
-def add_date(input):
-    
+def to_date(date_str):    #changes date string from arg value into date obj
+    date_obj = date.fromisoformat(date_str)
     return
+
+#def get_id():
 
 def check_for_data():
     return  #WIP checks JSON
@@ -25,6 +27,7 @@ def check_for_data():
 def main():
     #functionality 
     if args.action == "add":
+        
         edit_data(args.action, [args.date, args.description, args.amount])
         print(f"added expense: date:{args.date} desc:{args.description}  amount:${args.amount}")
         
