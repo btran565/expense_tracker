@@ -12,6 +12,11 @@ parser.add_argument('--amount', default=0.00, type=float, help = 'amount of expe
 args = parser.parse_args()
 
 expenses = []
+
+def add_data(expense):  #WIP
+
+    return id
+
 def edit_data(action, id): #(str, int) update or delete functionality
     return #WIP
 
