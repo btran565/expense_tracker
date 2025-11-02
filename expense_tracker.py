@@ -9,6 +9,7 @@ parser.add_argument('action', help='choose from the following actions: add, upda
 parser.add_argument('--date', default=date.today(), help='date of expense (YYYY-MM-DD), current date used if not specified')
 parser.add_argument('--description', default='no description given', type=str, help = 'description of expense') #optional arguments
 parser.add_argument('--amount', default=0.00, type=float, help = 'amount of expense')
+parser.add_argument('--id', default=0, type=int, help = 'id number of expense')
 args = parser.parse_args()
 
 expenses = []
@@ -27,14 +28,18 @@ def add_data(new_expense):  #takes list of args and appends it into a list of di
     print(f"Expense added successfully (ID: {new_id})")
     return 
 
-def edit_data(action, id): #(str, int) update or delete functionality
-    return #WIP
+def update_data(id):
+    
+    return
+
+def delete_data(id): #(str, int) update or delete functionality WIP
+    expenses.pop(id)
+    print(f"Expense deleted successfully")
+    return 
 
 def to_date(date_str):    #changes date string from arg value into date obj
     date_obj = date.fromisoformat(date_str)
     return date_obj
-
-#def get_id():
 
 def check_for_data():
     return  #WIP checks JSON
