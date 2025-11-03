@@ -28,11 +28,11 @@ def add_data(new_expense):  #takes list of args and appends it into a list of di
     print(f"Expense added successfully (ID: {new_id})")
     return 
 
-def update_data(id):
+def update_data(id):    #for loop iterating thru expense element dict
     
     return
 
-def delete_data(id): #(str, int) update or delete functionality WIP
+def delete_data(id): #(int) delete expense by popping list
     expenses.pop(id)
     print(f"Expense deleted successfully")
     return 
