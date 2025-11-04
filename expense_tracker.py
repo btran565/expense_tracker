@@ -14,6 +14,9 @@ args = parser.parse_args()
 
 expenses = []
 
+def to_file(list):
+    
+
 def add_data(new_expense):  #takes list of args and appends it into a list of dicts. each dict has a int key and dict value
     new_id = len(expenses) + 1
     expenses.append(
