@@ -19,9 +19,12 @@ def read_file(list): #reads csv of existing expenses and saves it to expenses[]
     return
 
 def to_file(list):
-    with open('expenses.csv', 'w', newline='') as file:
-        writer = csv.writer(list)
-        writer. writerows(list)
+    with open('data/expenses.csv', 'w', newline='') as file:
+        
+        csv_writer = csv.writer(file)
+        for expense in list:
+            print(f"{expense}")
+            csv_writer.writerow([expense])
     return
 
 def add_data(new_expense):  #takes list of args and appends it into a list of dicts. each dict has a int key and dict value
@@ -35,6 +38,7 @@ def add_data(new_expense):  #takes list of args and appends it into a list of di
                 "amount": new_expense[2]
             }
         })
+    to_file(expenses)
     print(f"Expense added successfully (ID: {new_id})")
     return 
 
