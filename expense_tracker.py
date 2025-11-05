@@ -1,4 +1,5 @@
 import sys
+import csv
 import argparse
 from datetime import date
 
@@ -16,6 +17,7 @@ expenses = []
 
 def to_file(list):
     
+    return
 
 def add_data(new_expense):  #takes list of args and appends it into a list of dicts. each dict has a int key and dict value
     new_id = len(expenses) + 1
@@ -52,13 +54,13 @@ def main():
     print("Welcome to the expense tracker. Type --h for the list of commands.")
 
     #while True:
-        if args.action == "exit":
-            print("Exiting the Expense Tracker.")
-            sys.exit(0)
-        if args.action == "add":
-            new_date = to_date(args.date)
-            add_data([new_date, args.description, args.amount])
-            print(f"added expense: date:{args.date} desc:{args.description}  amount:${args.amount}")
+    if args.action == "exit":
+        print("Exiting the Expense Tracker.")
+        sys.exit(0)
+    if args.action == "add":
+        new_date = to_date(args.date)
+        add_data([new_date, args.description, args.amount])
+        print(f"added expense: date:{args.date} desc:{args.description}  amount:${args.amount}")
         
    
 
