@@ -1,5 +1,4 @@
-import sys
-import csv
+import sys, os, csv
 import argparse
 from datetime import date
 
@@ -49,7 +48,7 @@ def delete_data(id): #(int) delete expense by popping list
     return 
 
 def to_date(date_str):    #changes date string from arg value into date obj
-    date_obj = date.fromisoformat(date_str)
+    date_obj = date.fromisoformat(date_str) #somethings wrong
     return date_obj
 
 def check_for_data():
@@ -65,9 +64,7 @@ def main():
         sys.exit(0)
     if args.action == "add":
         new_date = to_date(args.date)
-        add_data([new_date, args.description, args.amount])
-        print(f"added expense: date:{args.date} desc:{args.description}  amount:${args.amount}")
-        
+        add_data([new_date, args.description, args.amount])        
    
 
 
