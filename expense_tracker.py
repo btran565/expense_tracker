@@ -15,8 +15,14 @@ args = parser.parse_args()
 
 expenses = []
 
-def to_file(list):
+def read_file(list): #reads csv of existing expenses and saves it to expenses[]
     
+    return
+
+def to_file(list):
+    with open('expenses.csv', 'w', newline='') as file:
+        writer = csv.writer(list)
+        writer. writerows(list)
     return
 
 def add_data(new_expense):  #takes list of args and appends it into a list of dicts. each dict has a int key and dict value
