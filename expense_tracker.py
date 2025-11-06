@@ -14,8 +14,12 @@ args = parser.parse_args()
 
 expenses = []
 
-def read_file(list): #reads csv of existing expenses and saves it to expenses[]
-    
+def read_file(): #reads csv of existing expenses and saves it to expenses[]
+    with open('data/expenses.csv', 'r', newline='') as file:
+        csv_reader = csv.reader(file)
+        for row in csv_reader:
+            expenses.append(row)
+            print(f'Read from file! {row}')
     return
 
 def to_file(list):
@@ -61,7 +65,7 @@ def check_for_data():
 def main():
     #functionality 
     print("Welcome to the expense tracker. Type --h for the list of commands.")
-
+    read_file()
     #while True:
     if args.action == "exit":
         print("Exiting the Expense Tracker.")
