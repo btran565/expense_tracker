@@ -2,8 +2,14 @@ import sys, os, json
 import argparse
 from datetime import date
 
-data_folder = "expense_tracker/data"    
+data_folder = "data"    
 os.makedirs(data_folder, exist_ok=True)
+
+file_path = os.path.join(data_folder, 'expenses.json')
+if not os.path.exists(file_path):
+    # Create an empty expenses.json file if it doesn't exist
+    with open(file_path, 'w', encoding='utf-8') as f:
+        json.dump([], f)
 
 parser = argparse.ArgumentParser()
 
@@ -18,12 +24,12 @@ args = parser.parse_args()
 expenses = []
 
 def read_file(): #reads csv of existing expenses and saves it to expenses[]
-    with open('expense_tracker/data/expenses.json', 'r') as file:
-        data = json.load(file)
+    with open(file_path, 'r') as file:
+        expenses = json.load(file)
     return
 
 def to_file(list):
-    with open('expense_tracker/data/expenses.json', 'w', ) as file:
+    with open(file_path, 'w') as file:
         for expense in list:
             json.dump(expense, file, indent=4)
 
