@@ -1,6 +1,9 @@
-import sys, os, csv
+import sys, os, json
 import argparse
 from datetime import date
+
+data_folder = "expense_tracker/data"    
+os.makedirs(data_folder, exist_ok=True)
 
 parser = argparse.ArgumentParser()
 
@@ -15,20 +18,21 @@ args = parser.parse_args()
 expenses = []
 
 def read_file(): #reads csv of existing expenses and saves it to expenses[]
-    with open('data/expenses.csv', 'r', newline='') as file:
-        csv_reader = csv.reader(file)
-        for row in csv_reader:
-            expenses.append(row)
-            print(f'Read from file! {row}')
+    with open('expense_tracker/data/expenses.json', 'r') as file:
+        data = json.load(file)
     return
 
 def to_file(list):
-    with open('data/expenses.csv', 'w', newline='') as file:
-        
+    with open('expense_tracker/data/expenses.json', 'w', ) as file:
+        for expense in list:
+            json.dump(expense, file, indent=4)
+
+        '''
         csv_writer = csv.writer(file)
         for expense in list:
             print(f"{expense}")
             csv_writer.writerow([expense])
+            '''
     return
 
 def add_data(new_expense):  #takes list of args and appends it into a list of dicts. each dict has a int key and dict value
