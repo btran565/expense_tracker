@@ -15,7 +15,7 @@ parser = argparse.ArgumentParser()
 
 
 parser.add_argument('action', help='choose from the following actions: add, update, delete, view, or summarize') #positional argument
-parser.add_argument('--date', default=date.today(), help='date of expense (YYYY-MM-DD), current date used if not specified')
+parser.add_argument('--date', default=date.today().isoformat(), type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
 parser.add_argument('--description', default='no description given', type=str, help = 'description of expense') #optional arguments
 parser.add_argument('--amount', default=0.00, type=float, help = 'amount of expense')
 parser.add_argument('--id', default=0, type=int, help = 'id number of expense')
@@ -25,7 +25,7 @@ expenses = []
 
 def read_file(): #reads csv of existing expenses and saves it to expenses[]
     with open(file_path, 'r') as file:
-        expenses = json.load(file)
+        expenses = json.loads(file)
     return
 
 def to_file(list):
@@ -65,7 +65,14 @@ def delete_data(id): #(int) delete expense by popping list
     print(f"Expense deleted successfully")
     return 
 
-def to_date(date_str):    #changes date string from arg value into date obj
+def check_date(date_str):    #changes date string from arg value into date obj
+    try:
+        date.strftime(date_str, '%Y-%m-%d')
+        return date_str
+    except ValueError:
+        print("Date format must be YYYY-MM-DD.")
+    
+    
     date_obj = date.fromisoformat(date_str) #somethings wrong
     return date_obj
 
@@ -81,7 +88,7 @@ def main():
         print("Exiting the Expense Tracker.")
         sys.exit(0)
     if args.action == "add":
-        new_date = to_date(args.date)
+        new_date = check_date(args.date)
         add_data([new_date, args.description, args.amount])        
    
 
