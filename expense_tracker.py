@@ -21,29 +21,34 @@ parser.add_argument('--amount', default=0.00, type=float, help = 'amount of expe
 parser.add_argument('--id', default=0, type=int, help = 'id number of expense')
 args = parser.parse_args()
 
-expenses = []   #global list of expenses
+expenses = {}   #global dict of dicts
 
-def read_file(): #WIP reads csv of existing expenses and saves it to expenses[]
+def read_file(): # reads json and returns data WIP?
     with open(file_path, 'r') as f:
         data = json.load(f)
+        print(f'{data[0]}')    #WIP
     return data
 
-def to_file(list):  #WIP
+def to_file(list):  #writes expenses list to json
     with open(file_path, 'w') as f:
-        json.dump(expenses, f)
+        json.dump(expenses, f, indent=4)
     return
+
+def update_expenses(data):
+    
+
+    return  #WIP
 
 def add_data(new_expense):  #wIP takes list of args and appends it into a list of dicts. each dict has a int key and dict value
     new_id = len(expenses) + 1
-    expenses.append(
-        {
-            new_id: 
+    expenses =  {   #dict of dict
+        new_id: 
             {
                 "date": new_expense[0], 
                 "description": new_expense[1], 
                 "amount": new_expense[2]
             }
-        })
+    }
     to_file(expenses)
     print(f"Expense added successfully (ID: {new_id})")
     return 
