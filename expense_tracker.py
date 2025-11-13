@@ -21,24 +21,12 @@ parser.add_argument('--amount', default=0.00, type=float, help = 'amount of expe
 parser.add_argument('--id', default=0, type=int, help = 'id number of expense')
 args = parser.parse_args()
 
-expenses = []
+expenses = []   #global list of expenses
 
 def read_file(): #reads csv of existing expenses and saves it to expenses[]
-    with open(file_path, 'r') as file:
-        expenses = json.loads(file)
     return
 
 def to_file(list):
-    with open(file_path, 'w') as file:
-        for expense in list:
-            json.dump(expense, file, indent=4)
-
-        '''
-        csv_writer = csv.writer(file)
-        for expense in list:
-            print(f"{expense}")
-            csv_writer.writerow([expense])
-            '''
     return
 
 def add_data(new_expense):  #takes list of args and appends it into a list of dicts. each dict has a int key and dict value
@@ -67,14 +55,13 @@ def delete_data(id): #(int) delete expense by popping list
 
 def check_date(date_str):    #changes date string from arg value into date obj
     try:
-        date.strftime(date_str, '%Y-%m-%d')
-        return date_str
+        date_check = date.fromisoformat(date_str) #checks if date_str can be formatted into a date obj
     except ValueError:
         print("Date format must be YYYY-MM-DD.")
     
     
-    date_obj = date.fromisoformat(date_str) #somethings wrong
-    return date_obj
+    
+    return date_str
 
 def check_for_data():
     return  #WIP checks JSON
