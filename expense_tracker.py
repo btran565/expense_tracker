@@ -23,13 +23,17 @@ args = parser.parse_args()
 
 expenses = []   #global list of expenses
 
-def read_file(): #reads csv of existing expenses and saves it to expenses[]
+def read_file(): #WIP reads csv of existing expenses and saves it to expenses[]
+    with open(file_path, 'r') as f:
+        data = json.load(f)
+    return data
+
+def to_file(list):  #WIP
+    with open(file_path, 'w') as f:
+        json.dump(expenses, f)
     return
 
-def to_file(list):
-    return
-
-def add_data(new_expense):  #takes list of args and appends it into a list of dicts. each dict has a int key and dict value
+def add_data(new_expense):  #wIP takes list of args and appends it into a list of dicts. each dict has a int key and dict value
     new_id = len(expenses) + 1
     expenses.append(
         {
@@ -44,7 +48,7 @@ def add_data(new_expense):  #takes list of args and appends it into a list of di
     print(f"Expense added successfully (ID: {new_id})")
     return 
 
-def update_data(id):    #for loop iterating thru expense element dict
+def update_data(id):    #for loop iterating thru expense element dict WIP
     
     return
 
