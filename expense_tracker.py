@@ -30,8 +30,7 @@ def read_file(): # reads json and returns data WIP?
 
 def load_expenses(expenses):
     expenses = read_file()
-
-    return  #WIP checks JSON
+    return expenses
 
 def to_file(expenses):  #writes expenses list to json
     with open(file_path, 'w') as f:
@@ -74,7 +73,7 @@ def check_date(date_str):    #changes date string from arg value into date obj
 def main():
     #functionality 
     print("Welcome to the expense tracker. Type --h for the list of commands.")
-    load_expenses(global_expenses)
+    global_expenses = load_expenses(global_expenses)
     #while True:
     if args.action == "exit":
         print("Exiting the Expense Tracker.")
