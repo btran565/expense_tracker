@@ -21,25 +21,24 @@ parser.add_argument('--amount', default=0.00, type=float, help = 'amount of expe
 parser.add_argument('--id', default=0, type=int, help = 'id number of expense')
 args = parser.parse_args()
 
-expenses = {}   #global dict of dicts
+global_expenses = {}   #global dict of dicts
 
 def read_file(): # reads json and returns data WIP?
     with open(file_path, 'r') as f:
         data = json.load(f)
-        print(f'{data[0]}')    #WIP
     return data
 
-def to_file(list):  #writes expenses list to json
+def load_expenses(expenses):
+    expenses = read_file()
+
+    return  #WIP checks JSON
+
+def to_file(expenses):  #writes expenses list to json
     with open(file_path, 'w') as f:
         json.dump(expenses, f, indent=4)
     return
 
-def update_expenses(data):
-    
-
-    return  #WIP
-
-def add_data(new_expense):  #wIP takes list of args and appends it into a list of dicts. each dict has a int key and dict value
+def add_data(new_expense, expenses):  #wIP takes list of args and appends it into a list of dicts. each dict has a int key and dict value
     new_id = len(expenses) + 1
     expenses =  {   #dict of dict
         new_id: 
@@ -57,8 +56,8 @@ def update_data(id):    #for loop iterating thru expense element dict WIP
     
     return
 
-def delete_data(id): #(int) delete expense by popping list
-    expenses.pop(id)
+def delete_data(id, expenses): #(int) delete expense by popping list
+    del expenses[id]
     print(f"Expense deleted successfully")
     return 
 
@@ -72,20 +71,17 @@ def check_date(date_str):    #changes date string from arg value into date obj
     
     return date_str
 
-def check_for_data():
-    return  #WIP checks JSON
-
 def main():
     #functionality 
     print("Welcome to the expense tracker. Type --h for the list of commands.")
-    read_file()
+    load_expenses(global_expenses)
     #while True:
     if args.action == "exit":
         print("Exiting the Expense Tracker.")
         sys.exit(0)
     if args.action == "add":
         new_date = check_date(args.date)
-        add_data([new_date, args.description, args.amount])        
+        add_data([new_date, args.description, args.amount], global_expenses)        
    
 
 

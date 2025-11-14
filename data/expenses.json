@@ -1,9 +1,7 @@
-[
-    {
-        "1": {
-            "date": "2025-01-02",
-            "description": "tickets",
-            "amount": 123.0
-        }
+{
+    "1": {
+        "date": "2025-01-02",
+        "description": "tickets",
+        "amount": 123.0
     }
-]
+}
