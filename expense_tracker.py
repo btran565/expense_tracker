@@ -23,13 +23,9 @@ args = parser.parse_args()
 
 global_expenses = {}   #global dict of dicts
 
-def read_file(): # reads json and returns data WIP?
+def load_expenses():    #reads json and returns data
     with open(file_path, 'r') as f:
         data = json.load(f)
-    return data
-
-def load_expenses():
-    data = read_file()
     return data
 
 def to_file(expenses):  #writes expenses list to json
@@ -63,9 +59,6 @@ def check_date(date_str):    #changes date string from arg value into date obj
         date_check = date.fromisoformat(date_str) #checks if date_str can be formatted into a date obj
     except ValueError:
         print("Date format must be YYYY-MM-DD.")
-    
-    
-    
     return date_str
 
 def main():
