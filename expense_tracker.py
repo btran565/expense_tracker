@@ -28,9 +28,9 @@ def read_file(): # reads json and returns data WIP?
         data = json.load(f)
     return data
 
-def load_expenses(expenses):
-    expenses = read_file()
-    return expenses
+def load_expenses():
+    data = read_file()
+    return data
 
 def to_file(expenses):  #writes expenses list to json
     with open(file_path, 'w') as f:
@@ -73,14 +73,16 @@ def check_date(date_str):    #changes date string from arg value into date obj
 def main():
     #functionality 
     print("Welcome to the expense tracker. Type --h for the list of commands.")
-    global_expenses = load_expenses(global_expenses)
+    global_expenses = load_expenses()
     #while True:
     if args.action == "exit":
         print("Exiting the Expense Tracker.")
         sys.exit(0)
     if args.action == "add":
         new_date = check_date(args.date)
-        add_data([new_date, args.description, args.amount], global_expenses)        
+        add_data([new_date, args.description, args.amount], global_expenses)
+    if args.action == "delete":
+        delete_data(args.id, global_expenses)        
    
 
 
