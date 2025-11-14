@@ -37,17 +37,15 @@ def to_file(expenses):  #writes expenses list to json
         json.dump(expenses, f, indent=4)
     return
 
-def add_data(new_expense, expenses):  #wIP takes list of args and appends it into a list of dicts. each dict has a int key and dict value
+def add_data(arg_list, expenses):  #wIP takes list of args and appends it into a dict of dicts. each dict has a int key and dict value
     new_id = len(expenses) + 1
-    expenses =  {   #dict of dict
-        new_id: 
-            {
-                "date": new_expense[0], 
-                "description": new_expense[1], 
-                "amount": new_expense[2]
-            }
+    global_expenses[new_id] = {     
+        "date": arg_list[0], 
+        "description": arg_list[1], 
+        "amount": arg_list[2]
     }
-    to_file(expenses)
+    
+    to_file(global_expenses)
     print(f"Expense added successfully (ID: {new_id})")
     return 
 
