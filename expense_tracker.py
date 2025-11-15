@@ -35,13 +35,13 @@ def to_file(expenses):  #writes expenses list to json
 
 def add_data(arg_list, expenses):  #wIP takes list of args and appends it into a dict of dicts. each dict has a int key and dict value
     new_id = len(expenses) + 1
-    global_expenses[new_id] = {     
+    expenses[new_id] = {     
         "date": arg_list[0], 
         "description": arg_list[1], 
         "amount": arg_list[2]
     }
     
-    to_file(global_expenses)
+    to_file(expenses)
     print(f"Expense added successfully (ID: {new_id})")
     return 
 
@@ -64,14 +64,14 @@ def check_date(date_str):    #changes date string from arg value into date obj
 def main():
     #functionality 
     print("Welcome to the expense tracker. Type --h for the list of commands.")
-    global_expenses = load_expenses()
+    expenses = load_expenses()
     #while True:
     if args.action == "exit":
         print("Exiting the Expense Tracker.")
         sys.exit(0)
     if args.action == "add":
         new_date = check_date(args.date)
-        add_data([new_date, args.description, args.amount], global_expenses)
+        add_data([new_date, args.description, args.amount], expenses)
     if args.action == "delete":
         delete_data(args.id, global_expenses)        
    
