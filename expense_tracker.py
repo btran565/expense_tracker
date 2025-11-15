@@ -21,8 +21,6 @@ parser.add_argument('--amount', default=0.00, type=float, help = 'amount of expe
 parser.add_argument('--id', default=0, type=int, help = 'id number of expense')
 args = parser.parse_args()
 
-global_expenses = {}   #global dict of dicts
-
 def load_expenses():    #reads json and returns data
     with open(file_path, 'r') as f:
         data = json.load(f)
