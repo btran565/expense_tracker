@@ -71,7 +71,7 @@ def main():
         new_date = check_date(args.date)
         add_data([new_date, args.description, args.amount], expenses)
     if args.action == "delete":
-        delete_data(args.id, global_expenses)        
+        delete_data(args.id, expenses)        
    
 
 
