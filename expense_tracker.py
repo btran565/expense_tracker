@@ -26,20 +26,24 @@ def load_expenses():    #reads json and returns data
         data = json.load(f)
     return data
 
-def check_args():
-    return
+def check_args(action):
+    if action == 'add':
+        return #temp 
+    
+    else:
+        return True
 
 def to_file(expenses):  #writes expenses list to json
     with open(file_path, 'w') as f:
         json.dump(expenses, f, indent=4)
     return
 
-def add_data(arg_list, expenses):  #wIP takes list of args and appends it into a dict of dicts. each dict has a int key and dict value
+def add_data(expenses):  #wIP takes list of args and appends it into a dict of dicts. each dict has a int key and dict value
     new_id = len(expenses) + 1
     expenses[new_id] = {     
-        "date": arg_list[0], 
-        "description": arg_list[1], 
-        "amount": arg_list[2]
+        "date": args.date, 
+        "description": args.description, 
+        "amount": args.amount
     }
     
     to_file(expenses)
@@ -80,10 +84,10 @@ def main():
         print("Exiting the Expense Tracker.")
         sys.exit(0)
     if args.action == "add":
-        new_date = check_date(args.date)
-        add_data([new_date, args.description, args.amount], expenses)
+        ###new_date = check_date(args.date) #might not be needed
+        add_data(expenses)
     if args.action == "update":
-        update_data([args.date, args.description, args.amount], expenses)
+        update_data(expenses)
     if args.action == "delete":
         delete_data(args.id, expenses)        
    

@@ -13,15 +13,5 @@
         "date": "2020-12-20",
         "description": "test",
         "amount": 12.34
-    },
-    "4": {
-        "date": "2020-12-20",
-        "description": "test",
-        "amount": 12.34
-    },
-    "5": {
-        "date": "2020-12-20",
-        "description": "test",
-        "amount": 12.34
     }
 }
