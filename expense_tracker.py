@@ -26,6 +26,9 @@ def load_expenses():    #reads json and returns data
         data = json.load(f)
     return data
 
+def check_args():
+    return
+
 def to_file(expenses):  #writes expenses list to json
     with open(file_path, 'w') as f:
         json.dump(expenses, f, indent=4)
