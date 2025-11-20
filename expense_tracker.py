@@ -38,6 +38,13 @@ def to_file(expenses):  #writes expenses list to json
         json.dump(expenses, f, indent=4)
     return
 
+def check_date(date_str):    #changes date string from arg value into date obj MIGHT DELETE
+    try:
+        date_check = date.fromisoformat(date_str) #checks if date_str can be formatted into a date obj
+    except ValueError:
+        print("Date format must be YYYY-MM-DD.")
+    return date_str
+
 def add_data(expenses):  #wIP takes list of args and appends it into a dict of dicts. each dict has a int key and dict value
     new_id = len(expenses) + 1
     expenses[new_id] = {     
@@ -68,12 +75,7 @@ def summary_data():
 def month_summary_data():
     return
 
-def check_date(date_str):    #changes date string from arg value into date obj
-    try:
-        date_check = date.fromisoformat(date_str) #checks if date_str can be formatted into a date obj
-    except ValueError:
-        print("Date format must be YYYY-MM-DD.")
-    return date_str
+
 
 def main():
     #functionality 
