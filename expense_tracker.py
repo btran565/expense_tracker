@@ -15,21 +15,29 @@ parser = argparse.ArgumentParser()
 
 
 parser.add_argument('action', help='choose from the following actions: add, update, delete, list, or summarize') #positional argument
-parser.add_argument('--date', default=date.today().isoformat(), type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
-parser.add_argument('--description', default='no description given', type=str, help = 'description of expense') #optional arguments
-parser.add_argument('--amount', default=0.00, type=float, help = 'amount of expense')
-parser.add_argument('--id', default=0, type=int, help = 'id number of expense')
+parser.add_argument('--date', default=None, type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
+parser.add_argument('--description', type=str, help = 'description of expense') #optional arguments
+parser.add_argument('--amount', type=float, help = 'amount of expense')
+parser.add_argument('--id', type=int, help = 'id number of expense')
 args = parser.parse_args()
 
-def load_expenses():    #reads json and returns data
+def load_expenses():    #reads json and returns data list
     with open(file_path, 'r') as f:
         data = json.load(f)
     return data
 
-def check_args(action):
-    if action == 'add':
-        return #temp 
-    
+def args_check():
+    if args.action == 'add':
+        if args.date == None or args.description == None or args.amount == None:
+            print("Error: the action 'add' requires arguments: --date, --description, --amount")
+            return False
+    if args.action == 'update':
+        if args.id == None:
+            print("Error: the action 'update' requires argument: --id")
+            return False
+        if args.date == None and args.description == None and args.amount == None:
+            print(f"Error: one of the following arguments are required to update Expense ID: {args.id}: --date, --description, --amount")
+            return False
     else:
         return True
 
@@ -57,7 +65,7 @@ def add_data(expenses):  #wIP takes list of args and appends it into a dict of d
     print(f"Expense added successfully (ID: {new_id})")
     return 
 
-def update_data(id, expenses):    #for loop iterating thru expense element dict WIP
+def update_data(expenses):    #for loop iterating thru expense element dict WIP
     
     return
 
