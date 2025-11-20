@@ -38,6 +38,10 @@ def args_check():
         if args.date == None and args.description == None and args.amount == None:
             print(f"Error: one of the following arguments are required to update Expense ID: {args.id}: --date, --description, --amount")
             return False
+    if args.action == 'delete':
+        if args.id == None:
+            print("Error: the action 'delete' requires argument: --id")
+            return False
     else:
         return True
 
@@ -87,20 +91,20 @@ def month_summary_data():
 
 def main():
     #functionality 
-    print("Welcome to the expense tracker. Type --h for the list of commands.")
     expenses = load_expenses()
-    #while True:
-    if args.action == "exit":
-        print("Exiting the Expense Tracker.")
+    if args_check():
+        if args.action == "exit":
+            print("Exiting the Expense Tracker.")
+            sys.exit(0)
+        if args.action == "add":
+            ###new_date = check_date(args.date) #might not be needed
+            add_data(expenses)
+        if args.action == "update":
+            update_data(expenses)
+        if args.action == "delete":
+            delete_data(args.id, expenses)        
+    else:
         sys.exit(0)
-    if args.action == "add":
-        ###new_date = check_date(args.date) #might not be needed
-        add_data(expenses)
-    if args.action == "update":
-        update_data(expenses)
-    if args.action == "delete":
-        delete_data(args.id, expenses)        
-   
 
 
 if __name__ == '__main__':

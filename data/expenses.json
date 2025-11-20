@@ -3,35 +3,5 @@
         "date": "2020-12-20",
         "description": "test",
         "amount": 12.34
-    },
-    "2": {
-        "date": "2020-12-20",
-        "description": "test",
-        "amount": 12.34
-    },
-    "3": {
-        "date": "2020-12-20",
-        "description": "test",
-        "amount": 12.34
-    },
-    "4": {
-        "date": "2025-11-19",
-        "description": "test",
-        "amount": 12.34
-    },
-    "5": {
-        "date": null,
-        "description": "test",
-        "amount": 12.34
-    },
-    "6": {
-        "date": null,
-        "description": "test",
-        "amount": 12.34
-    },
-    "7": {
-        "date": null,
-        "description": "no description given",
-        "amount": 0.0
     }
 }
