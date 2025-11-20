@@ -14,7 +14,7 @@ if not os.path.exists(file_path):
 parser = argparse.ArgumentParser()
 
 
-parser.add_argument('action', help='choose from the following actions: add, update, delete, view, or summarize') #positional argument
+parser.add_argument('action', help='choose from the following actions: add, update, delete, list, or summarize') #positional argument
 parser.add_argument('--date', default=date.today().isoformat(), type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
 parser.add_argument('--description', default='no description given', type=str, help = 'description of expense') #optional arguments
 parser.add_argument('--amount', default=0.00, type=float, help = 'amount of expense')
@@ -43,7 +43,7 @@ def add_data(arg_list, expenses):  #wIP takes list of args and appends it into a
     print(f"Expense added successfully (ID: {new_id})")
     return 
 
-def update_data(id):    #for loop iterating thru expense element dict WIP
+def update_data(id, expenses):    #for loop iterating thru expense element dict WIP
     
     return
 
@@ -51,6 +51,15 @@ def delete_data(id, expenses): #(int) delete expense by popping list
     del expenses[id]
     print(f"Expense deleted successfully")
     return 
+
+def list_data():
+    return
+
+def summary_data():
+    return
+
+def month_summary_data():
+    return
 
 def check_date(date_str):    #changes date string from arg value into date obj
     try:
@@ -70,6 +79,8 @@ def main():
     if args.action == "add":
         new_date = check_date(args.date)
         add_data([new_date, args.description, args.amount], expenses)
+    if args.action == "update":
+        update_data([args.date, args.description, args.amount], expenses)
     if args.action == "delete":
         delete_data(args.id, expenses)        
    
