@@ -14,7 +14,7 @@ if not os.path.exists(file_path):
 parser = argparse.ArgumentParser()
 
 
-parser.add_argument('action', help='choose from the following actions: add, update, delete, list, or summarize') #positional argument
+parser.add_argument('action', help='actions: add, update, delete, list, or summarize') #positional argument
 parser.add_argument('--date', default=None, type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
 parser.add_argument('--description', type=str, help = 'description of expense') #optional arguments
 parser.add_argument('--amount', type=float, help = 'amount of expense')
