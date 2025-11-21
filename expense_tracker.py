@@ -9,7 +9,7 @@ file_path = os.path.join(data_folder, 'expenses.json')
 if not os.path.exists(file_path):
     # Create an empty expenses.json file if it doesn't exist
     with open(file_path, 'w', encoding='utf-8') as f:
-        json.dump([], f)
+        json.dump({}, f)    #initialize as empty dict {}
 
 parser = argparse.ArgumentParser()
 
@@ -86,8 +86,6 @@ def summary_data():
 
 def month_summary_data():
     return
-
-
 
 def main():
     #functionality 
