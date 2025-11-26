@@ -9,7 +9,7 @@ file_path = os.path.join(data_folder, 'expenses.json')
 if not os.path.exists(file_path):
     # Create an empty expenses.json file if it doesn't exist
     with open(file_path, 'w', encoding='utf-8') as f:
-        json.dump({}, f)    #initialize as empty dict {}
+        json.dump([], f)    #initialize as empty dict {}
 
 parser = argparse.ArgumentParser()
 
@@ -58,30 +58,31 @@ def check_date(date_str):    #(DELETE?)changes date string from arg value into d
 
 def add_data(expenses):  #takes list of args and appends it into a dict of dicts. each dict has a int key and dict value
     new_id = len(expenses) + 1
-    expenses[new_id] = {     
+    expenses.append({    
         "date": args.date, 
         "description": args.description, 
         "amount": args.amount
-    }
+    })
     
     to_file(expenses)
     print(f"Expense added successfully (ID: {new_id})")
     return 
 
 def update_data(expenses):    #for loop iterating thru expense element dict 
-    id_str = str(args.id)
+    id = args.id - 1
+    print(f"debugging: {args.id}")
     if args.date:
-        expenses[id_str].update({"date": args.date})
+        expenses[id].update({"date": args.date})
     if args.description:
-        expenses[id_str].update({"description": args.description})
+        expenses[id].update({"description": args.description})
     if args.amount:
-        expenses[id_str].update({"amount": args.amount})
+        expenses[id].update({"amount": args.amount})
     to_file(expenses)
     print("Expense updated successfully")
     return
 
 def delete_data(expenses): #delete expense by popping list
-    del expenses[str(args.id)]
+    del expenses[args.id-1]
     to_file(expenses)
     print(f"Expense deleted successfully.")
     return 
