@@ -70,7 +70,15 @@ def add_data(expenses):  #wIP takes list of args and appends it into a dict of d
     return 
 
 def update_data(expenses):    #for loop iterating thru expense element dict WIP
-    
+    id_str = str(args.id)
+    if args.date:
+        expenses[id_str].update({"date": args.date})
+    if args.description:
+        expenses[id_str].update({"description": args.description})
+    if args.amount:
+        expenses[id_str].update({"amount": args.amount})
+    to_file(expenses)
+    print("Expense updated successfully")
     return
 
 def delete_data(id, expenses): #(int) delete expense by popping list
