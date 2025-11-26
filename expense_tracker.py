@@ -42,22 +42,21 @@ def args_check():
         if args.id == None:
             print("Error: the action 'delete' requires argument: --id")
             return False
-    else:
-        return True
+    return True
 
 def to_file(expenses):  #writes expenses list to json
     with open(file_path, 'w') as f:
         json.dump(expenses, f, indent=4)
     return
 
-def check_date(date_str):    #changes date string from arg value into date obj MIGHT DELETE
+def check_date(date_str):    #(DELETE?)changes date string from arg value into date obj
     try:
         date_check = date.fromisoformat(date_str) #checks if date_str can be formatted into a date obj
     except ValueError:
         print("Date format must be YYYY-MM-DD.")
     return date_str
 
-def add_data(expenses):  #wIP takes list of args and appends it into a dict of dicts. each dict has a int key and dict value
+def add_data(expenses):  #takes list of args and appends it into a dict of dicts. each dict has a int key and dict value
     new_id = len(expenses) + 1
     expenses[new_id] = {     
         "date": args.date, 
@@ -69,7 +68,7 @@ def add_data(expenses):  #wIP takes list of args and appends it into a dict of d
     print(f"Expense added successfully (ID: {new_id})")
     return 
 
-def update_data(expenses):    #for loop iterating thru expense element dict WIP
+def update_data(expenses):    #for loop iterating thru expense element dict 
     id_str = str(args.id)
     if args.date:
         expenses[id_str].update({"date": args.date})
@@ -81,8 +80,10 @@ def update_data(expenses):    #for loop iterating thru expense element dict WIP
     print("Expense updated successfully")
     return
 
-def delete_data(id, expenses): #(int) delete expense by popping list
-    del expenses[id]
+def delete_data(expenses): #delete expense by popping list
+    print("test print")
+    del expenses[str(args.id)]
+    to_file(expenses)
     print(f"Expense deleted successfully")
     return 
 
@@ -108,8 +109,10 @@ def main():
         if args.action == "update":
             update_data(expenses)
         if args.action == "delete":
-            delete_data(args.id, expenses)        
+            print("this function works!!!\n")
+            delete_data(expenses)        
     else:
+        print("args_check() failed. Exiting program.")
         sys.exit(0)
 
 
