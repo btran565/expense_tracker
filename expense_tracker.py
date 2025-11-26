@@ -81,10 +81,9 @@ def update_data(expenses):    #for loop iterating thru expense element dict
     return
 
 def delete_data(expenses): #delete expense by popping list
-    print("test print")
     del expenses[str(args.id)]
     to_file(expenses)
-    print(f"Expense deleted successfully")
+    print(f"Expense deleted successfully.")
     return 
 
 def list_data():
@@ -109,7 +108,6 @@ def main():
         if args.action == "update":
             update_data(expenses)
         if args.action == "delete":
-            print("this function works!!!\n")
             delete_data(expenses)        
     else:
         print("args_check() failed. Exiting program.")
