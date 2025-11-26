@@ -14,11 +14,12 @@ if not os.path.exists(file_path):
 parser = argparse.ArgumentParser()
 
 
-parser.add_argument('action', help='actions: add, update, delete, list, or summarize') #positional argument
+parser.add_argument('action', help='actions: add, update, delete, list, summary') #positional argument
 parser.add_argument('--date', default=None, type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
 parser.add_argument('--description', type=str, help = 'description of expense') #optional arguments
 parser.add_argument('--amount', type=float, help = 'amount of expense')
 parser.add_argument('--id', type=int, help = 'id number of expense')
+
 args = parser.parse_args()
 
 def load_expenses():    #reads json and returns data list
@@ -116,6 +117,8 @@ def main():
             delete_data(expenses)        
         if args.action == "list":
             list_data(expenses)
+        if args.action == "summary":
+            summary_data(expenses)
     else:
         print("args_check() failed. Exiting program.")
         sys.exit(0)
