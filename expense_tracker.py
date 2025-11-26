@@ -84,10 +84,14 @@ def update_data(expenses):    #for loop iterating thru expense element dict
 def delete_data(expenses): #delete expense by popping list
     del expenses[args.id-1]
     to_file(expenses)
-    print(f"Expense deleted successfully.")
+    print(f"Expense deleted successfully. Use the 'list' action to view updated expense ID's")
     return 
 
-def list_data():
+def list_data(expenses):
+    print(f"{'ID':<3} {'Date':<10} {'Description':<40} {'Amount':<6}")
+    for e in expenses:
+        id = expenses.index(e) + 1
+        print(f"{id:<3} {e['date']:<10} {e['description']:<40} {e['amount']:<6}")
     return
 
 def summary_data():
@@ -110,6 +114,8 @@ def main():
             update_data(expenses)
         if args.action == "delete":
             delete_data(expenses)        
+        if args.action == "list":
+            list_data(expenses)
     else:
         print("args_check() failed. Exiting program.")
         sys.exit(0)
