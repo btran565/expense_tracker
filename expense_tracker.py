@@ -95,7 +95,12 @@ def list_data(expenses):
         print(f"{id:<3} {e['date']:<10} {e['description']:<40} {e['amount']:<6}")
     return
 
-def summary_data():
+def summary_data(expenses):
+    e_sum = 0
+    for e in expenses:
+        e_sum += e['amount']
+    print(f"Total expenses: ${e_sum}")
+
     return
 
 def month_summary_data():
