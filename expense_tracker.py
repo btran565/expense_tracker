@@ -19,6 +19,7 @@ parser.add_argument('--date', default=None, type=str, help='date of expense (YYY
 parser.add_argument('--description', type=str, help = 'description of expense') #optional arguments
 parser.add_argument('--amount', type=float, help = 'amount of expense')
 parser.add_argument('--id', type=int, help = 'id number of expense')
+parser.add_argument('--month', type=int, help = 'month of summary')
 
 args = parser.parse_args()
 
@@ -42,6 +43,10 @@ def args_check():
     if args.action == 'delete':
         if args.id == None:
             print("Error: the action 'delete' requires argument: --id")
+            return False
+    if args.action == 'summary':
+        if args.month < 1 or args.month > 12:
+            print("Error: the 'month' argument must be a valid month from 1 to 12")
             return False
     return True
 
@@ -97,13 +102,15 @@ def list_data(expenses):
 
 def summary_data(expenses):
     e_sum = 0
-    for e in expenses:
-        e_sum += e['amount']
-    print(f"Total expenses: ${e_sum}")
-
-    return
-
-def month_summary_data():
+    if args.month:  #if 'month' argument is entered, summary of monthly expense will be printed
+        
+        
+        return
+        
+    else:
+        for e in expenses:
+            e_sum += e['amount']
+        print(f"Total expenses: ${e_sum}")
     return
 
 def main():
