@@ -1,6 +1,6 @@
 import sys, os, json
 import argparse
-from datetime import datetime
+from datetime import datetime, date
 
 data_folder = "data"    
 os.makedirs(data_folder, exist_ok=True)
@@ -15,7 +15,7 @@ parser = argparse.ArgumentParser()
 
 
 parser.add_argument('action', help='actions: add, update, delete, list, summary') #positional argument
-parser.add_argument('--date', default=None, type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
+parser.add_argument('--date', default=date.today(), type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
 parser.add_argument('--description', type=str, help = 'description of expense') #optional arguments
 parser.add_argument('--amount', type=float, help = 'amount of expense')
 parser.add_argument('--id', type=int, help = 'id number of expense')
@@ -65,8 +65,10 @@ def check_date(date_str):    #(DELETE?)changes date string from arg value into d
 
 def add_data(expenses):  #takes list of args and appends it into a dict of dicts. each dict has a int key and dict value
     new_id = len(expenses) + 1
-    expenses.append({    
-        "date": args.date, 
+    date_str = args.date.isoformat()
+    print(f"debugging: date: {date_str}\n\n")
+    expenses.append({    #saves date as str in JSON
+        "date": date_str, 
         "description": args.description, 
         "amount": args.amount
     })
@@ -105,7 +107,7 @@ def summary_data(expenses):
     e_sum = 0
     if args.month:  #if 'month' argument is entered, summary of monthly expense will be printed
         for e in expenses:
-            date_obj = datetime.strptime(e['date'], "%m-%d-%y")
+            date_obj = datetime.strptime(e['date'], "%Y-%m-%d")
             if date_obj.month == args.month:
                 e_sum += e['amount']
             month_name = date_obj.strftime("%B")
