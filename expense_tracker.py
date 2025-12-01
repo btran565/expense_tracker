@@ -1,6 +1,6 @@
 import sys, os, json
 import argparse
-from datetime import date
+from datetime import datetime
 
 data_folder = "data"    
 os.makedirs(data_folder, exist_ok=True)
@@ -45,9 +45,10 @@ def args_check():
             print("Error: the action 'delete' requires argument: --id")
             return False
     if args.action == 'summary':
-        if args.month < 1 or args.month > 12:
-            print("Error: the 'month' argument must be a valid month from 1 to 12")
-            return False
+        if args.month:
+            if args.month < 1 or args.month > 12:
+                print("Error: the 'month' argument must be a valid month from 1 to 12")
+                return False
     return True
 
 def to_file(expenses):  #writes expenses list to json
@@ -103,10 +104,13 @@ def list_data(expenses):
 def summary_data(expenses):
     e_sum = 0
     if args.month:  #if 'month' argument is entered, summary of monthly expense will be printed
-        
-        
+        for e in expenses:
+            date_obj = datetime.strptime(e['date'], "%m-%d-%y")
+            if date_obj.month == args.month:
+                e_sum += e['amount']
+            month_name = date_obj.strftime("%B")
+        print(f"Total expenses for {month_name}: ${e_sum}")
         return
-        
     else:
         for e in expenses:
             e_sum += e['amount']
