@@ -8,7 +8,7 @@ A small expense tracker that stores expense data in JSON and allows users to com
 This project was developed in Python 3.12.3 and stores the user's expenses in JSON files. Python's argparse module/library is used to parse the positional and optional arguments given by the user through the Linux CLI to manage their expenses. 
 
 ## List of positional/optional arguments:
-- 'add' - adds an expense with a description, amount, and date (default date set to today's date if not specified)
+1. `add` - adds an expense with a description, amount, and date (default date set to today's date if not specified)
 - update
 - delete
 - list
