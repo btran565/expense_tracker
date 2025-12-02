@@ -42,6 +42,8 @@ def args_check():
         if args.date == None and args.description == None and args.amount == None:
             print(f"Error: one of the following arguments are required to update Expense ID: {args.id}: --date, --description, --amount")
             return False
+        if check_date(args.date) == False:
+            return False
     if args.action == 'delete':
         if args.id == None:
             print("Error: the action 'delete' requires argument: --id")
