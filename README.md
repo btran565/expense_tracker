@@ -9,7 +9,7 @@ This project was developed in Python 3.12.3 and stores the user's expenses in JS
 
 ## List of positional/optional arguments:
 1. `add`
-   Adds an expense with a description, amount, and date (default date set to today's date if not specified).
+Adds an expense with a description, amount, and date (default date set to today's date if not specified).
 3. `update`
 4. `delete`
 5. `list`
