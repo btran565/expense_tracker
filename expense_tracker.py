@@ -15,7 +15,7 @@ parser = argparse.ArgumentParser()
 
 
 parser.add_argument('action', help='actions: add, update, delete, list, summary') #positional argument
-parser.add_argument('--date', default=date.today(), type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
+parser.add_argument('--date', default=date.today().strftime("%Y-%m-%d"), type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
 parser.add_argument('--description', type=str, help = 'description of expense') #optional arguments
 parser.add_argument('--amount', type=float, help = 'amount of expense')
 parser.add_argument('--id', type=int, help = 'id number of expense')
@@ -32,6 +32,8 @@ def args_check():
     if args.action == 'add':
         if args.date == None or args.description == None or args.amount == None:
             print("Error: the action 'add' requires arguments: --date, --description, --amount")
+            return False
+        if check_date(args.date) == False:
             return False
     if args.action == 'update':
         if args.id == None:
@@ -58,17 +60,17 @@ def to_file(expenses):  #writes expenses list to json
 
 def check_date(date_str):    #(DELETE?)changes date string from arg value into date obj
     try:
-        date_check = date.fromisoformat(date_str) #checks if date_str can be formatted into a date obj
+        #date_check = date.fromisoformat(date_str) #checks if date_str can be formatted into a date obj
+        date_check = datetime.strptime(date_str, "%Y-%m-%d")
+        return True
     except ValueError:
         print("Date format must be YYYY-MM-DD.")
-    return date_str
+        return False
 
 def add_data(expenses):  #takes list of args and appends it into a dict of dicts. each dict has a int key and dict value
     new_id = len(expenses) + 1
-    date_str = args.date.isoformat()
-    print(f"debugging: date: {date_str}\n\n")
     expenses.append({    #saves date as str in JSON
-        "date": date_str, 
+        "date": args.date, 
         "description": args.description, 
         "amount": args.amount
     })
