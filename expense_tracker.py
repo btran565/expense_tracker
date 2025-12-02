@@ -139,6 +139,11 @@ def summary_data(expenses):
         print(f"Total expenses: ${e_sum}")
     return
 
+def clear_list(expenses):   #clears expenses list and JSON file
+    expenses.clear()
+    to_file(expenses)
+    print("List of expenses cleared.")
+
 def main():
     #functionality 
     expenses = load_expenses()
@@ -146,8 +151,9 @@ def main():
         if args.action == "exit":
             print("Exiting the Expense Tracker.")
             sys.exit(0)
+        if args.action == "clear":
+            clear_list(expenses)
         if args.action == "add":
-            ###new_date = check_date(args.date) #might not be needed
             add_data(expenses)
         if args.action == "update":
             update_data(expenses)
