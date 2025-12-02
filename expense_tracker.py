@@ -28,25 +28,41 @@ def load_expenses():    #reads json and returns data list
         data = json.load(f)
     return data
 
-def args_check():
+def args_check(expenses):
     if args.action == 'add':
         if args.date == None or args.description == None or args.amount == None:
             print("Error: the action 'add' requires arguments: --date, --description, --amount")
             return False
         if check_date(args.date) == False:
             return False
+        if args.amount < 0:
+            print("Error: the amount for this expense must be a positive value")
+            return False
     if args.action == 'update':
         if args.id == None:
             print("Error: the action 'update' requires argument: --id")
+            return False
+        try:
+            id_check = expenses[args.id]
+        except IndexError:
+            print(f"Error: an expense with ID {args.id} does not exist")
             return False
         if args.date == None and args.description == None and args.amount == None:
             print(f"Error: one of the following arguments are required to update Expense ID: {args.id}: --date, --description, --amount")
             return False
         if check_date(args.date) == False:
             return False
+        if args.amount < 0:
+            print("Error: the amount for this expense must be a positive value")
+            return False
     if args.action == 'delete':
         if args.id == None:
             print("Error: the action 'delete' requires argument: --id")
+            return False
+        try:
+            id_check = expenses[args.id]
+        except IndexError:
+            print(f"Error: an expense with ID {args.id} does not exist")
             return False
     if args.action == 'summary':
         if args.month:
@@ -126,7 +142,7 @@ def summary_data(expenses):
 def main():
     #functionality 
     expenses = load_expenses()
-    if args_check():
+    if args_check(expenses):
         if args.action == "exit":
             print("Exiting the Expense Tracker.")
             sys.exit(0)
@@ -142,7 +158,7 @@ def main():
         if args.action == "summary":
             summary_data(expenses)
     else:
-        print("args_check() failed. Exiting program.")
+        print("Invalid argument(s). Exiting expense_tracker.py")
         sys.exit(0)
 
 
