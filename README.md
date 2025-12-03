@@ -12,9 +12,9 @@ This project was developed in Python 3.12.3 and stores the user's expenses in JS
 `add` - Adds an expense with a description, amount, and date (default date set to today's date if not specified).
 
 Example:
-`python3 expense_tracker.py add --description 'dinner' --amount '15.36' --date 2025-12-01`
+> `python3 expense_tracker.py add --description 'dinner' --amount '15.36' --date 2025-12-01`
 
-`python3 expense_tracker.py add --description 'dinner' --amount '15.36'`
+> `python3 expense_tracker.py add --description 'dinner' --amount '15.36'`
 (no date specified, so this expense's date will be saved as the current date by default)
 
 `update` - Updates an existing expense's description, amount, and/or date
