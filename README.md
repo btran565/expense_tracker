@@ -30,11 +30,13 @@ Working in a Linux environment is new to me, so this expense tracker has helped 
 >
 > Expense updated successfully
 
+
 `delete` - Uses an existing expense's ID to delete it from the tracker.
 
 > `python3 expense_tracker.py delete --id 2`
 >
 > Expense deleted successfully. Use the 'list' action to view updated expense ID's
+
 
 `list` - Lists the ID's, dates, descriptions, and amounts of all expenses in the tracker.
 
@@ -43,22 +45,24 @@ Working in a Linux environment is new to me, so this expense tracker has helped 
 > ID  Date       Description                              Amount
 > 1   2025-12-01 dinner                                   15.36 
 
+
 `summary` - Displays the sum of all expenses. 
 
 > `python3 expense_tracker.py summary`
 >
 > Total expenses: $228.01
 
-If an optional 'month' argument is entered, `summary` will instead display the sum of all expenses for that month.
+If an optional `--month` argument is entered, `summary` will instead display the sum of all expenses for that month.
 
-> python3 expense_tracker.py summary --month 12
+
+> `python3 expense_tracker.py summary --month 12`
 >
 > Total expenses for December: $15.36
 
 
 `clear` - Clears all expenses from the tracker.
 
-> python3 expense_tracker.py clear
+> `python3 expense_tracker.py clear`
 >
 > List of expenses cleared.
 
