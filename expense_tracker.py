@@ -43,7 +43,7 @@ def args_check(expenses):   #error handling for missing/invalid arguments
             print("Error: the action 'update' requires argument: --id")
             return False
         try:
-            id_check = expenses[args.id]
+            id_check = expenses[args.id - 1]
         except IndexError:
             print(f"Error: an expense with ID {args.id} does not exist")
             return False
@@ -96,9 +96,8 @@ def add_data(expenses):  #takes list of args and appends it into a dict of dicts
     print(f"Expense added successfully (ID: {new_id})")
     return 
 
-def update_data(expenses):    #for loop iterating thru expense element dict 
-    id = args.id - 1
-    print(f"debugging: {args.id}")
+def update_data(expenses):    #WIP
+    id = args.id -1
     if args.date:
         expenses[id].update({"date": args.date})
     if args.description:
