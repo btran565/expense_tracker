@@ -29,6 +29,7 @@ This project was developed in Python 3.12.3 and stores the user's expenses in JS
 `summary` - Displays the sum of all expenses. 
 
 > `python3 expense_tracker.py summary`
+>
 > Total expenses: $228.01
 
 If an optional 'month' argument is entered, `summary` will instead display the sum of all expenses for that month.
