@@ -96,7 +96,7 @@ def add_data(expenses):  #takes list of args and appends it into a dict of dicts
     print(f"Expense added successfully (ID: {new_id})")
     return 
 
-def update_data(expenses):    #WIP
+def update_data(expenses):    #checks optional args date/desc/amt and updates expense with provided id
     id = args.id -1
     if args.date:
         expenses[id].update({"date": args.date})
