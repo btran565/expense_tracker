@@ -9,7 +9,7 @@ file_path = os.path.join(data_folder, 'expenses.json')
 if not os.path.exists(file_path):
     # Create an empty expenses.json file if it doesn't exist
     with open(file_path, 'w', encoding='utf-8') as f:
-        json.dump([], f)    #initialize as empty dict {}
+        json.dump([], f)    #initialize as empty list ()
 
 parser = argparse.ArgumentParser()
 
@@ -28,9 +28,9 @@ def load_expenses():    #reads json and returns data list
         data = json.load(f)
     return data
 
-def args_check(expenses):
+def args_check(expenses):   #error handling for missing/invalid arguments
     if args.action == 'add':
-        if args.date == None or args.description == None or args.amount == None:
+        if args.description == None or args.amount == None:
             print("Error: the action 'add' requires arguments: --date, --description, --amount")
             return False
         if check_date(args.date) == False:
@@ -76,9 +76,8 @@ def to_file(expenses):  #writes expenses list to json
         json.dump(expenses, f, indent=4)
     return
 
-def check_date(date_str):    #(DELETE?)changes date string from arg value into date obj
+def check_date(date_str):    #changes date string from arg value into date obj
     try:
-        #date_check = date.fromisoformat(date_str) #checks if date_str can be formatted into a date obj
         date_check = datetime.strptime(date_str, "%Y-%m-%d")
         return True
     except ValueError:
