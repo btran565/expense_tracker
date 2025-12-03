@@ -60,7 +60,7 @@ def args_check(expenses):   #error handling for missing/invalid arguments
             print("Error: the action 'delete' requires argument: --id")
             return False
         try:
-            id_check = expenses[args.id]
+            id_check = expenses[args.id -1]
         except IndexError:
             print(f"Error: an expense with ID {args.id} does not exist")
             return False
