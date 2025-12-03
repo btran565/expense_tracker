@@ -1,5 +1,6 @@
 # Expense Tracker CLI Application
 Developed using: Python 3.12.3, Linux, CLI, JSON
+
 Project URL: https://roadmap.sh/projects/expense-tracker
 
 
