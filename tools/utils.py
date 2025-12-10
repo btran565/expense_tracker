@@ -1,3 +1,16 @@
+import sys, os, json
+
+def initialize(): #name of method WIP
+    data_folder = "data"    
+    os.makedirs(data_folder, exist_ok=True)
+
+    file_path = os.path.join(data_folder, 'expenses.json')
+    if not os.path.exists(file_path):
+        # Create an empty expenses.json file if it doesn't exist
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump([], f)    #initialize as empty list ()
+
+
 def to_file(expenses):  #writes expenses list to json
     with open(file_path, 'w') as f:
         json.dump(expenses, f, indent=4)

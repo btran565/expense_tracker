@@ -1,3 +1,5 @@
+from datetime import datetime, date
+
 def check_add(expenses, args):
     if args.description == None or args.amount == None:
             print("Error: the action 'add' requires arguments: --date, --description, --amount")
