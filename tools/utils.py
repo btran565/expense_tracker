@@ -1,0 +1,17 @@
+def to_file(expenses):  #writes expenses list to json
+    with open(file_path, 'w') as f:
+        json.dump(expenses, f, indent=4)
+    return
+
+def load_expenses():    #reads json and returns data list
+    with open(file_path, 'r') as f:
+        data = json.load(f)
+    return data
+
+def check_date(date_str):    #changes date string from arg value into date obj
+    try:
+        date_check = datetime.strptime(date_str, "%Y-%m-%d")
+        return True
+    except ValueError:
+        print("Date format must be YYYY-MM-DD.")
+        return False
