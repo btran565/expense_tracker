@@ -1,4 +1,4 @@
-def summary_data(expenses):
+def run(expenses):
     e_sum = 0
     if args.month:  #if 'month' argument is entered, summary of monthly expense will be printed
         for e in expenses:
