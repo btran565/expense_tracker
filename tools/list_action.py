@@ -1,13 +1,13 @@
 import sys
-from action_parent import Action
+from .action_parent import Action
 
 class List(Action):
     
     def validate(self):
         return True
 
-    def run(expenses):
-        if list.validate()==False:
+    def run(self, expenses):
+        if self.validate()==False:
             print("Invalid argument(s). Exiting expense_tracker.py")
             sys.exit(0)
         
