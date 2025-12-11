@@ -1,8 +1,4 @@
 class Action():
-    def __init__(self, expenses, args):
-        self.expenses = expenses
-        self.args = args
-        pass
 
     def validate():
         """checks for all valid command line arguments, previously all in check_args.py"""
