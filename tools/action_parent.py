@@ -1,6 +1,7 @@
 class Action():
-    def __init__(self, expenses):
-        """no attributes, left empty"""
+    def __init__(self, expenses, args):
+        self.expenses = expenses
+        self.args = args
         pass
 
     def validate():

@@ -6,6 +6,7 @@ import sys, os, json
 import argparse
 from datetime import datetime, date
 
+
 data_folder = "data"    
 os.makedirs(data_folder, exist_ok=True)
 
