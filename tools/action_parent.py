@@ -1,6 +1,9 @@
 class Action():
-    def __init__(self):
+    def __init__(self, expenses):
         """no attributes, left empty"""
+        pass
+
+    def create_parsers():
         pass
 
     def validate():
