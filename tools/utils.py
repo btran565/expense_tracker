@@ -31,7 +31,7 @@ def check_date(date_str):    #changes date string from arg value into date obj
         print("Date format must be YYYY-MM-DD.")
         return False
 
-def clear_list(expenses):   #clears expenses list and JSON file
+def clear_list(expenses, file_path):   #clears expenses list and JSON file
     expenses.clear()
-    to_file(expenses)
+    to_file(expenses, file_path)
     print("List of expenses cleared.")

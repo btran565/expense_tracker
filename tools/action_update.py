@@ -22,6 +22,8 @@ class Update(Action):
         if args.amount < 0:
             print("Error: the amount for this expense must be a positive value")
             return False
+        else:
+            return True
 
     def run(self, expenses, args, file_path):    #checks optional args date/desc/amt and updates expense with provided id
         id = args.id -1

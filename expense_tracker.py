@@ -158,7 +158,7 @@ def main():
             print("Exiting the Expense Tracker.")
             sys.exit(0)
         case "clear":
-            utils.clear_list(expenses)
+            utils.clear_list(expenses, file_path)
         case "add":
             add_obj.Add().validate(args)
             add_obj.Add().run(expenses, args, file_path)
@@ -169,8 +169,10 @@ def main():
             delete_obj.Delete().validate(expenses, args)
             delete_obj.Delete().run(expenses, args, file_path)
         case "list":
-            list_obj.List().run(expenses)
-            sys.exit(0)
+            check = list_obj.List().validate(expenses)
+            if check:
+                list_obj.List().run(expenses)
+                sys.exit(0)
         case "summary":
             check = summary_obj.Summary().validate(args)
             if check:    

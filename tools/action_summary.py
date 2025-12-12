@@ -8,8 +8,8 @@ class Summary(Action):
             if args.month < 1 or args.month > 12:
                 print("Error: the 'month' argument must be a valid month from 1 to 12")
                 return False
-        
-        return True
+        else:
+            return True
 
     def run(self, expenses, args):
         e_sum = 0
