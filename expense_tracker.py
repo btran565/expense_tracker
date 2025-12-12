@@ -3,6 +3,7 @@ import argparse
 from datetime import datetime, date
 import tools.action_list as list_obj
 import tools.action_summary as summary_obj
+import tools.utils as utils
 
 data_folder = "data"    
 os.makedirs(data_folder, exist_ok=True)
@@ -145,7 +146,8 @@ def clear_list(expenses):   #clears expenses list and JSON file
 
 def main():
     #functionality 
-    expenses = load_expenses()
+    file_path = utils.init_file_path()
+    expenses = utils.load_expenses(file_path)
     if args_check(expenses):
         if args.action == "exit":
             print("Exiting the Expense Tracker.")
