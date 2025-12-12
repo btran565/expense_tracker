@@ -30,3 +30,8 @@ def check_date(date_str):    #changes date string from arg value into date obj
     except ValueError:
         print("Date format must be YYYY-MM-DD.")
         return False
+
+def clear_list(expenses):   #clears expenses list and JSON file
+    expenses.clear()
+    to_file(expenses)
+    print("List of expenses cleared.")
