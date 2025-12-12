@@ -12,6 +12,8 @@ class Add(Action):
         if args.amount < 0:
             print("Error: the amount for this expense must be a positive value")
             return False
+        else:
+            return True
 
     def run(self, expenses, args, file_path):  #takes list of args and appends it into a dict of dicts. each dict has a int key and dict value
         new_id = len(expenses) + 1

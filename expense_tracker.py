@@ -151,27 +151,33 @@ def main():
     #functionality 
     file_path = utils.init_file_path()
     expenses = utils.load_expenses(file_path)
-    if args_check(expenses):
-        if args.action == "exit":
+    check = None
+
+    match args.action:
+        case "exit":
             print("Exiting the Expense Tracker.")
             sys.exit(0)
-        if args.action == "clear":
+        case "clear":
             utils.clear_list(expenses)
-        if args.action == "add":
+        case "add":
             add_obj.Add().validate(args)
             add_obj.Add().run(expenses, args, file_path)
-        if args.action == "update":
+        case "update":
             update_obj.Update().validate(expenses, args)
             update_obj.Update().run(expenses, args, file_path)
-        if args.action == "delete":
+        case "delete":
             delete_obj.Delete().validate(expenses, args)
             delete_obj.Delete().run(expenses, args, file_path)
-        if args.action == "list":
+        case "list":
             list_obj.List().run(expenses)
-        if args.action == "summary":
-            summary_obj.Summary().validate(args)
-            summary_obj.Summary().run(expenses, args)
-    else:
+            sys.exit(0)
+        case "summary":
+            check = summary_obj.Summary().validate(args)
+            if check:    
+                summary_obj.Summary().run(expenses, args)
+                sys.exit(0)
+
+    if check == False:        
         print("Invalid argument(s). Exiting expense_tracker.py")
         sys.exit(0)
 

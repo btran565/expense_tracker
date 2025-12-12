@@ -13,6 +13,8 @@ class Delete(Action):
         except IndexError:
             print(f"Error: an expense with ID {args.id} does not exist")
             return False
+        else:
+            return True
     
     def run(self, expenses, args, file_path): #delete expense by popping list
         del expenses[args.id-1]

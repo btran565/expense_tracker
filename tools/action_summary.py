@@ -1,5 +1,6 @@
 from datetime import datetime
 from tools.action_base import Action
+
 class Summary(Action):
 
     def validate(self, args):
@@ -7,6 +8,8 @@ class Summary(Action):
             if args.month < 1 or args.month > 12:
                 print("Error: the 'month' argument must be a valid month from 1 to 12")
                 return False
+        
+        return True
 
     def run(self, expenses, args):
         e_sum = 0
@@ -15,7 +18,7 @@ class Summary(Action):
                 date_obj = datetime.strptime(e['date'], "%Y-%m-%d")
                 if date_obj.month == args.month:
                     e_sum += e['amount']
-                month_name = date_obj.strftime("%B")
+                    month_name = date_obj.strftime("%B")
             print(f"Total expenses for {month_name}: ${e_sum}")
             return
         else:
