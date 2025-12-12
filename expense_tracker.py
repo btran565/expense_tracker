@@ -161,11 +161,10 @@ def main():
         if args.action == "delete":
             delete_data(expenses)        
         if args.action == "list":
-            list_data(expenses)
             list_obj.List().run(expenses)
         if args.action == "summary":
-            summary_data(expenses)
-            summary_obj.Summary().validate
+            summary_obj.Summary().validate(args)
+            summary_obj.Summary().run(expenses, args)
     else:
         print("Invalid argument(s). Exiting expense_tracker.py")
         sys.exit(0)
