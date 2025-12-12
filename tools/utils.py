@@ -10,7 +10,7 @@ def init_file_path(): #creates and returns file_path
         # Create an empty expenses.json file if it doesn't exist
         with open(file_path, 'w', encoding='utf-8') as f:
             json.dump([], f)    #initialize as empty list ()
-    return file_path
+    return file_path    #should this be a separate get_path() method?
 
 
 def to_file(expenses, file_path):  #writes expenses list to json
