@@ -3,6 +3,7 @@ import argparse
 from datetime import datetime, date
 import tools.action_add as add_obj
 import tools.action_update as update_obj
+import tools.action_delete as delete_obj
 import tools.action_list as list_obj
 import tools.action_summary as summary_obj
 import tools.utils as utils
@@ -155,7 +156,7 @@ def main():
             print("Exiting the Expense Tracker.")
             sys.exit(0)
         if args.action == "clear":
-            clear_list(expenses)
+            utils.clear_list(expenses)
         if args.action == "add":
             add_obj.Add().validate(args)
             add_obj.Add().run(expenses, args, file_path)
@@ -163,7 +164,8 @@ def main():
             update_obj.Update().validate(expenses, args)
             update_obj.Update().run(expenses, args, file_path)
         if args.action == "delete":
-            delete_data(expenses)        
+            delete_obj.Delete().validate(expenses, args)
+            delete_obj.Delete().run(expenses, args, file_path)
         if args.action == "list":
             list_obj.List().run(expenses)
         if args.action == "summary":
