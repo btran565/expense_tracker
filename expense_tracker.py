@@ -1,6 +1,7 @@
 import sys, os, json
 import argparse
 from datetime import datetime, date
+import tools.action_add as add_obj
 import tools.action_list as list_obj
 import tools.action_summary as summary_obj
 import tools.utils as utils
@@ -155,7 +156,8 @@ def main():
         if args.action == "clear":
             clear_list(expenses)
         if args.action == "add":
-            add_data(expenses)
+            add_obj.Add().validate(args)
+            add_obj.Add().run(expenses, args)
         if args.action == "update":
             update_data(expenses)
         if args.action == "delete":
