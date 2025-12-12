@@ -1,7 +1,7 @@
 import sys, os, json
 import argparse
 from datetime import datetime, date
-import tools.list_action as list
+import tools.list_action as list_obj
 
 data_folder = "data"    
 os.makedirs(data_folder, exist_ok=True)
@@ -159,8 +159,7 @@ def main():
             delete_data(expenses)        
         if args.action == "list":
             list_data(expenses)
-            obj = list.List(expenses, None)
-            obj.run(obj.expenses)
+            list_obj.List().run(expenses)
         if args.action == "summary":
             summary_data(expenses)
     else:
