@@ -1,9 +1,9 @@
 from tools.action_base import Action
-from tools.utils import check_date
+from tools.utils import check_date, to_file
 
 
 
-class Update(Action) 
+class Update(Action): 
 
     def validate(self, expenses, args):
         if args.id == None:
@@ -23,7 +23,7 @@ class Update(Action)
             print("Error: the amount for this expense must be a positive value")
             return False
 
-    def run(self, expenses, args):    #checks optional args date/desc/amt and updates expense with provided id
+    def run(self, expenses, args, file_path):    #checks optional args date/desc/amt and updates expense with provided id
         id = args.id -1
         if args.date:
             expenses[id].update({"date": args.date})
@@ -31,6 +31,6 @@ class Update(Action)
             expenses[id].update({"description": args.description})
         if args.amount:
             expenses[id].update({"amount": args.amount})
-        to_file(expenses)
+        to_file(expenses, file_path)
         print("Expense updated successfully")
         return

@@ -158,9 +158,10 @@ def main():
             clear_list(expenses)
         if args.action == "add":
             add_obj.Add().validate(args)
-            add_obj.Add().run(expenses, args)
+            add_obj.Add().run(expenses, args, file_path)
         if args.action == "update":
-            update_data(expenses)
+            update_obj.Update().validate(expenses, args)
+            update_obj.Update().run(expenses, args, file_path)
         if args.action == "delete":
             delete_data(expenses)        
         if args.action == "list":
