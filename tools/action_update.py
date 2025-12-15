@@ -2,8 +2,6 @@ import sys
 from tools.action_base import Action
 from tools.utils import check_date, to_file
 
-
-
 class Update(Action): 
 
     def validate(self, expenses, args):
@@ -26,9 +24,10 @@ class Update(Action):
             return False
         if check_date(args.date) == False:
             return False
-        if args.amount < 0:
-            print("Error: the amount for this expense must be a positive value")
-            return False
+        if args.amount:
+            if args.amount < 0:
+                print("Error: the amount for this expense must be a positive value")
+                return False
         else:
             return True
 
