@@ -21,10 +21,10 @@ Working in a Linux environment is new to me, so this expense tracker has helped 
 2. Create and activate Virtual Environment:
 
   > python -m venv venv
-  > # On Windows:
+  # On Windows:
   > .\venv\Scripts\activate
 
-  > # On macOS and Linux:
+  # On macOS and Linux:
   > source venv/bin/activate
 
 ## List of Positional/Optional CLI Arguments:
