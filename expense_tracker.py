@@ -56,7 +56,7 @@ def main():
                 list_obj.List().run(expenses)
                 sys.exit(0)
         case "summary":
-            check = summary_obj.Summary().validate(expenses, args)    #WIP something weird's happening here when the list's empty
+            check = summary_obj.Summary().validate(expenses, args)    #WIP check is None
             if check:    
                 summary_obj.Summary().run(expenses, args)
                 sys.exit(0)
