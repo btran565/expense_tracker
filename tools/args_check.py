@@ -1,7 +1,6 @@
 from datetime import datetime, date
 from utils import check_date
 
-####### should i just put each of these in their own action.py files?
 
 def check_add(args):
     if args.description == None or args.amount == None:

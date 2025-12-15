@@ -3,8 +3,7 @@ from datetime import date
 from tools.action_base import Action
 from tools.utils import check_date, to_file
 
-class Update(Action):   #WIP currently updates date to today when --date isnt used
-
+class Update(Action):   
     def validate(self, expenses, args):
         try:
             test = expenses[0]

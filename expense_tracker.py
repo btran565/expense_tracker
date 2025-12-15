@@ -59,7 +59,7 @@ def main():
                 list_obj.List().run(expenses)
                 sys.exit(0)
         case "summary":
-            check = summary_obj.Summary().validate(expenses, args)    #WIP check is None
+            check = summary_obj.Summary().validate(expenses, args)    
             if check:    
                 summary_obj.Summary().run(expenses, args)
                 sys.exit(0)
