@@ -7,7 +7,8 @@ class List(Action):
         try:
             test = expenses[0]
         except IndexError:
-            print("Error: There are no expenses to list in the expense tracker. Use the command 'add' to create expenses.")
+            print("Notice: There are no expenses to list in the expense tracker. Use the command 'add' to create expenses.")
+            sys.exit(0)
             return False
         return True
 
