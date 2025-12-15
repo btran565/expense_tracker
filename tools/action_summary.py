@@ -19,8 +19,8 @@ class Summary(Action):
 
     def run(self, expenses, args):      #WIP still doesnt account for year
         e_sum = 0   #sum of expenses requested by user
-        month_name = calendar.month_name[args.month]
         if args.month:  #if 'month' argument is entered, summary of monthly expense will be printed
+            month_name = calendar.month_name[args.month]
             for e in expenses:
                 date_obj = datetime.strptime(e['date'], "%Y-%m-%d")
                 if date_obj.month == args.month:
