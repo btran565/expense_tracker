@@ -12,6 +12,20 @@ This project was developed in Python 3.12.3 and stores the user's expenses in JS
 
 Working in a Linux environment is new to me, so this expense tracker has helped me get familiar with creating a project that parses command line arguments.
 
+## Installation
+
+1. Clone this Repository:
+  > git clone https://github.com/btran565/expense_tracker.git
+  > cd expense-tracker-cli
+
+2. Create and activate Virtual Environment:
+
+  > python -m venv venv
+  > # On Windows:
+  > .\venv\Scripts\activate
+
+  > # On macOS and Linux:
+  > source venv/bin/activate
 
 ## List of Positional/Optional CLI Arguments:
 
