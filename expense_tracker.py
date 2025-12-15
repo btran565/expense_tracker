@@ -21,7 +21,7 @@ parser = argparse.ArgumentParser()
 
 
 parser.add_argument('action', help='actions: add, update, delete, list, summary') #positional argument
-parser.add_argument('--date', default=date.today().strftime("%Y-%m-%d"), type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
+parser.add_argument('--date', type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
 parser.add_argument('--description', type=str, help = 'description of expense') #optional arguments
 parser.add_argument('--amount', type=float, help = 'amount of expense')
 parser.add_argument('--id', type=int, help = 'id number of expense')
@@ -42,14 +42,17 @@ def main():
         case "clear":
             utils.clear_list(expenses, file_path)
         case "add":
-            add_obj.Add().validate(args)
-            add_obj.Add().run(expenses, args, file_path)
+            check = add_obj.Add().validate(args)
+            if check:
+                add_obj.Add().run(expenses, args, file_path)
         case "update":
-            update_obj.Update().validate(expenses, args)
-            update_obj.Update().run(expenses, args, file_path)
+            check = update_obj.Update().validate(expenses, args)
+            if check:
+                update_obj.Update().run(expenses, args, file_path)
         case "delete":
-            delete_obj.Delete().validate(expenses, args)
-            delete_obj.Delete().run(expenses, args, file_path)
+            check = delete_obj.Delete().validate(expenses, args)
+            if check:
+                delete_obj.Delete().run(expenses, args, file_path)
         case "list":
             check = list_obj.List().validate(expenses)
             if check:

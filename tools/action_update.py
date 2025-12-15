@@ -1,8 +1,9 @@
 import sys
+from datetime import date
 from tools.action_base import Action
 from tools.utils import check_date, to_file
 
-class Update(Action): 
+class Update(Action):   #WIP currently updates date to today when --date isnt used
 
     def validate(self, expenses, args):
         try:
@@ -20,8 +21,10 @@ class Update(Action):
             print(f"Error: an expense with ID {args.id} does not exist")
             return False
         if args.date == None and args.description == None and args.amount == None:
-            print(f"Error: one of the following arguments are required to update Expense ID: {args.id}: --date, --description, --amount")
+            print(f"Error: one of the following arguments are required to update Expense ID {args.id}: --date, --description, --amount")
             return False
+        if args.date == None:   #sets date to today if --date isn't used
+            args.date = expenses[args.id-1].get("date")
         if check_date(args.date) == False:
             return False
         if args.amount:
