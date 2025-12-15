@@ -1,3 +1,4 @@
+import sys
 from tools.action_base import Action
 from tools.utils import check_date, to_file
 
@@ -6,6 +7,12 @@ from tools.utils import check_date, to_file
 class Update(Action): 
 
     def validate(self, expenses, args):
+        try:
+            test = expenses[0]
+        except IndexError:
+            print("Notice: There are no expenses in the expense tracker. Use the command 'add' to create expenses.")
+            sys.exit(0)
+            return False
         if args.id == None:
             print("Error: the action 'update' requires argument: --id")
             return False

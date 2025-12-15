@@ -1,9 +1,16 @@
+import sys
 from datetime import datetime
 from tools.action_base import Action
 
 class Summary(Action):
 
-    def validate(self, args):
+    def validate(self, expenses, args):
+        try:
+            test = expenses[0]
+        except IndexError:
+            print("Notice: There are no expenses in the expense tracker. Use the command 'add' to create expenses.")
+            sys.exit(0)
+            return False
         if args.month:
             if args.month < 1 or args.month > 12:
                 print("Error: the 'month' argument must be a valid month from 1 to 12")
