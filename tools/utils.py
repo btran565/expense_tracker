@@ -25,7 +25,7 @@ def load_expenses(file_path):    #reads json and returns data list
 
 def check_date(date_str):    #changes date string from arg value into date obj
     try:
-        date_check = datetime.strptime(date_str, "%Y-%m-%d")
+        datetime.strptime(date_str, "%Y-%m-%d")
         return True
     except ValueError:
         print("Date format must be YYYY-MM-DD.")

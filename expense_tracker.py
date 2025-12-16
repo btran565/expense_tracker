@@ -8,6 +8,7 @@ import tools.action_list as list_obj
 import tools.action_summary as summary_obj
 import tools.utils as utils
 
+# TODO: move to utils or separate data layer
 data_folder = "data"    
 os.makedirs(data_folder, exist_ok=True)
 

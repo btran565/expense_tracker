@@ -1,1 +1,4 @@
-*.json
+data/
+notes.txt
+**/__pycache__/
+**/.vscode/

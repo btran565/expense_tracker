@@ -6,9 +6,7 @@ from tools.utils import to_file
 class Delete(Action):
     
     def validate(self, expenses, args):
-        try:
-            test = expenses[0]
-        except IndexError:
+        if expenses is None or len(expenses) == 0:
             print("Notice: There are no expenses in the expense tracker. Use the command 'add' to create expenses.")
             sys.exit(0)
             return False
@@ -24,6 +22,7 @@ class Delete(Action):
             return True
     
     def run(self, expenses, args, file_path): #delete expense by popping list
+        self.validate(expenses, args)
         del expenses[args.id-1]
         to_file(expenses, file_path)
         print(f"Expense deleted successfully. Use the 'list' action to view updated expense ID's")
