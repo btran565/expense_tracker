@@ -16,6 +16,7 @@ Working in a Linux environment is new to me, so this expense tracker has helped 
 
 1. Clone this Repository:
   > git clone https://github.com/btran565/expense_tracker.git
+  >       
   > cd expense-tracker-cli
 
 2. Create and activate Virtual Environment:
