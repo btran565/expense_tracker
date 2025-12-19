@@ -5,8 +5,6 @@ from datetime import date
 class Add(Action):
 
     def validate(self, args):
-        if args.date == None:
-            args.date = date.today().strftime("%Y-%m-%d")
         if check_date(args.date) == False:
             return False
         if args.amount < 0:

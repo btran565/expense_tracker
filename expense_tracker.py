@@ -23,7 +23,7 @@ parser = argparse.ArgumentParser()
 subparsers = parser.add_subparsers(dest='action', help='actions: add, update, delete, list, summary')
 
 parser_add = subparsers.add_parser('add', help='Add a new expense')
-parser_add.add_argument('--date', type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
+parser_add.add_argument('--date', default=date.today().strftime("%Y-%m-%d"), type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
 parser_add.add_argument('--description', required = True, type=str, help = 'description of expense') #optional arguments
 parser_add.add_argument('--amount', required = True, type=float, help = 'amount of expense')
 
@@ -39,7 +39,7 @@ parser_delete.add_argument('--id', required=True, type=int, help = 'id number of
 parser_list = subparsers.add_parser('list', help='Lists all existing expenses')
 
 parser_summary = subparsers.add_parser('summary', help="Returns a sum of all expenses or all expenses in a month if the argument '--month' is used")
-parser.add_argument('--month', type=int, help = 'month of summary')
+parser_summary.add_argument('--month', type=int, help = 'month of summary')
 
 args = parser.parse_args()
 

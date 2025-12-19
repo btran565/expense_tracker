@@ -10,9 +10,6 @@ class Delete(Action):
             print("Notice: There are no expenses in the expense tracker. Use the command 'add' to create expenses.")
             sys.exit(0)
             return False
-        if args.id == None:
-            print("Error: the action 'delete' requires argument: --id")
-            return False
         try:
             id_check = expenses[args.id -1]
         except IndexError:
