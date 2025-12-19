@@ -19,16 +19,25 @@ if not os.path.exists(file_path):
         json.dump([], f)    #initialize as empty list ()
 
 parser = argparse.ArgumentParser()
+#parser.add_argument('action', help='actions: add, update, delete, list, summary') #positional argument
+subparsers = parser.add_subparsers(dest='action', help='actions: add, update, delete, list, summary')
+
+parser_add = subparsers.add_parser('add', help='Add a new expense')
+parser_add.add_argument('--date', type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
+parser_add.add_argument('--description', required = True, type=str, help = 'description of expense') #optional arguments
+parser_add.add_argument('--amount', required = True, type=float, help = 'amount of expense')
 
 
-parser.add_argument('action', help='actions: add, update, delete, list, summary') #positional argument
+"""
 parser.add_argument('--date', type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
 parser.add_argument('--description', type=str, help = 'description of expense') #optional arguments
 parser.add_argument('--amount', type=float, help = 'amount of expense')
 parser.add_argument('--id', type=int, help = 'id number of expense')
 parser.add_argument('--month', type=int, help = 'month of summary')
+"""
 
 args = parser.parse_args()
+
 
 def main():
     #functionality 
