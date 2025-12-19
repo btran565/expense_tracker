@@ -19,18 +19,17 @@ if not os.path.exists(file_path):
         json.dump([], f)    #initialize as empty list ()
 
 parser = argparse.ArgumentParser()
-#parser.add_argument('action', help='actions: add, update, delete, list, summary') #positional argument
 subparsers = parser.add_subparsers(dest='action', help='actions: add, update, delete, list, summary')
 
 parser_add = subparsers.add_parser('add', help='Add a new expense')
 parser_add.add_argument('--date', default=date.today().strftime("%Y-%m-%d"), type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
-parser_add.add_argument('--description', required = True, type=str, help = 'description of expense') #optional arguments
+parser_add.add_argument('--description', required = True, type=str, help = 'description of expense') 
 parser_add.add_argument('--amount', required = True, type=float, help = 'amount of expense')
 
 parser_update = subparsers.add_parser('update', help='Update an existing expense')
 parser_update.add_argument('--id', required=True, type=int, help = 'id number of expense')
 parser_update.add_argument('--date', type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
-parser_update.add_argument('--description', type=str, help = 'description of expense') #optional arguments
+parser_update.add_argument('--description', type=str, help = 'description of expense')
 parser_update.add_argument('--amount', type=float, help = 'amount of expense')
 
 parser_delete = subparsers.add_parser('delete', help='Deletes an existing expense')
