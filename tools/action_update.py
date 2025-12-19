@@ -21,7 +21,7 @@ class Update(Action):
             return False
         #---
         # Arg parser required args check
-        if args.date == None and args.description == None and args.amount == None:
+        if args.date == None and args.description == None and args.amount == None:  # 'required' not True in arg initialization because at least one is required, not all three
             print(f"Error: one of the following arguments are required to update Expense ID {args.id}: --date, --description, --amount")
             return False
         if args.date == None:   #sets date to today if --date isn't used
