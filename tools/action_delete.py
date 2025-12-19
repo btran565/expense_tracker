@@ -1,15 +1,12 @@
 import sys
 from tools.action_base import Action
-from tools.utils import to_file
+from tools.utils import to_file, expenses_exists
 
 
 class Delete(Action):
     
     def validate(self, expenses, args):
-        if expenses is None or len(expenses) == 0:
-            print("Notice: There are no expenses in the expense tracker. Use the command 'add' to create expenses.")
-            sys.exit(0)
-            return False
+        expenses_exists(expenses)
         try:
             id_check = expenses[args.id -1]
         except IndexError:
