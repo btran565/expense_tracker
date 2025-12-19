@@ -1,4 +1,5 @@
 data/
 notes.txt
 tools/pycache/
+**/pycache 
 **/.vscode/
