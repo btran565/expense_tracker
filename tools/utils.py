@@ -1,7 +1,6 @@
 import sys, os, json
 from datetime import datetime
 
-# TODO:  utils method for checking if expense exists
 def init_file_path(): #creates and returns file_path
     data_folder = "data"    
     os.makedirs(data_folder, exist_ok=True)
