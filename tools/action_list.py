@@ -1,15 +1,11 @@
 import sys
 from .action_base import Action
+from tools.utils import expenses_exists
 
 class List(Action):
     
     def validate(self, expenses):
-        try:
-            test = expenses[0]
-        except IndexError:
-            print("Notice: There are no expenses to list in the expense tracker. Use the command 'add' to create expenses.")
-            sys.exit(0)
-            return False
+        expenses_exists(expenses)
         return True
 
     def run(self, expenses):

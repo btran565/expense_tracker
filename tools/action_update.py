@@ -1,16 +1,10 @@
 import sys
-from datetime import date
 from tools.action_base import Action
-from tools.utils import check_date, to_file
+from tools.utils import check_date, to_file, expenses_exists
 
 class Update(Action):   
     def validate(self, expenses, args):
-        try:
-            test = expenses[0]
-        except IndexError:
-            print("Notice: There are no expenses in the expense tracker. Use the command 'add' to create expenses.")
-            sys.exit(0)
-            return False
+        expenses_exists(expenses)
         if args.id == None:
             print("Error: the action 'update' requires argument: --id")
             return False
@@ -19,7 +13,9 @@ class Update(Action):
         except IndexError:
             print(f"Error: an expense with ID {args.id} does not exist")
             return False
-        if args.date == None and args.description == None and args.amount == None:
+        #---
+        # Arg parser required args check
+        if args.date == None and args.description == None and args.amount == None:  # 'required' not True in arg initialization because at least one is required, not all three
             print(f"Error: one of the following arguments are required to update Expense ID {args.id}: --date, --description, --amount")
             return False
         if args.date == None:   #sets date to today if --date isn't used
@@ -30,6 +26,7 @@ class Update(Action):
             if args.amount < 0:
                 print("Error: the amount for this expense must be a positive value")
                 return False
+        #---
         else:
             return True
 

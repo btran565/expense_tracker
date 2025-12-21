@@ -1,12 +1,10 @@
 from tools.utils import to_file, check_date
 from tools.action_base import Action
+from datetime import date
 
 class Add(Action):
 
     def validate(self, args):
-        if args.description == None or args.amount == None:
-            print("Error: the action 'add' requires arguments: --date, --description, --amount")
-            return False
         if check_date(args.date) == False:
             return False
         if args.amount < 0:

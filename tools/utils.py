@@ -25,7 +25,7 @@ def load_expenses(file_path):    #reads json and returns data list
 
 def check_date(date_str):    #changes date string from arg value into date obj
     try:
-        date_check = datetime.strptime(date_str, "%Y-%m-%d")
+        datetime.strptime(date_str, "%Y-%m-%d")
         return True
     except ValueError:
         print("Date format must be YYYY-MM-DD.")
@@ -35,3 +35,8 @@ def clear_list(expenses, file_path):   #clears expenses list and JSON file
     expenses.clear()
     to_file(expenses, file_path)
     print("List of expenses cleared.")
+
+def expenses_exists(expenses):
+    if expenses is None or len(expenses) == 0:
+            print("Notice: There are no expenses in the expense tracker. Use the command 'add' to create expenses.")
+            sys.exit(0)

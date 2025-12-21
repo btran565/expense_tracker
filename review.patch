@@ -1,0 +1,134 @@
+commit 28f9804498e5da7c88ae134a0bd4e3061227f947
+Author: Josh Hunziker <jhunzik@users.noreply.github.com>
+Date:   Sun Dec 14 23:28:04 2025 -0700
+
+    Some suggestions
+
+diff --git a/.gitignore b/.gitignore
+index 94a2dd1..1e10efb 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1 +1,4 @@
+-*.json
+\ No newline at end of file
++data/
++notes.txt
++**/__pycache__/
++**/.vscode/
+diff --git a/expense_tracker.py b/expense_tracker.py
+index 869f009..e9adbce 100644
+--- a/expense_tracker.py
++++ b/expense_tracker.py
+@@ -8,6 +8,7 @@ import tools.action_list as list_obj
+ import tools.action_summary as summary_obj
+ import tools.utils as utils
+ 
++# TODO: move to utils or separate data layer
+ data_folder = "data"    
+ os.makedirs(data_folder, exist_ok=True)
+ 
+diff --git a/tools/__pycache__/action_add.cpython-312.pyc b/tools/__pycache__/action_add.cpython-312.pyc
+deleted file mode 100644
+index 6296114..0000000
+Binary files a/tools/__pycache__/action_add.cpython-312.pyc and /dev/null differ
+diff --git a/tools/__pycache__/action_base.cpython-312.pyc b/tools/__pycache__/action_base.cpython-312.pyc
+deleted file mode 100644
+index 9c8dc4b..0000000
+Binary files a/tools/__pycache__/action_base.cpython-312.pyc and /dev/null differ
+diff --git a/tools/__pycache__/action_delete.cpython-312.pyc b/tools/__pycache__/action_delete.cpython-312.pyc
+deleted file mode 100644
+index 3eceb42..0000000
+Binary files a/tools/__pycache__/action_delete.cpython-312.pyc and /dev/null differ
+diff --git a/tools/__pycache__/action_list.cpython-312.pyc b/tools/__pycache__/action_list.cpython-312.pyc
+deleted file mode 100644
+index ed10b0c..0000000
+Binary files a/tools/__pycache__/action_list.cpython-312.pyc and /dev/null differ
+diff --git a/tools/__pycache__/action_parent.cpython-312.pyc b/tools/__pycache__/action_parent.cpython-312.pyc
+deleted file mode 100644
+index a5cf422..0000000
+Binary files a/tools/__pycache__/action_parent.cpython-312.pyc and /dev/null differ
+diff --git a/tools/__pycache__/action_summary.cpython-312.pyc b/tools/__pycache__/action_summary.cpython-312.pyc
+deleted file mode 100644
+index c8892dd..0000000
+Binary files a/tools/__pycache__/action_summary.cpython-312.pyc and /dev/null differ
+diff --git a/tools/__pycache__/action_update.cpython-312.pyc b/tools/__pycache__/action_update.cpython-312.pyc
+deleted file mode 100644
+index ab23c38..0000000
+Binary files a/tools/__pycache__/action_update.cpython-312.pyc and /dev/null differ
+diff --git a/tools/__pycache__/list_action.cpython-312.pyc b/tools/__pycache__/list_action.cpython-312.pyc
+deleted file mode 100644
+index e147e00..0000000
+Binary files a/tools/__pycache__/list_action.cpython-312.pyc and /dev/null differ
+diff --git a/tools/__pycache__/utils.cpython-312.pyc b/tools/__pycache__/utils.cpython-312.pyc
+deleted file mode 100644
+index e595e56..0000000
+Binary files a/tools/__pycache__/utils.cpython-312.pyc and /dev/null differ
+diff --git a/tools/action_delete.py b/tools/action_delete.py
+index ed82076..580075b 100644
+--- a/tools/action_delete.py
++++ b/tools/action_delete.py
+@@ -6,9 +6,7 @@ from tools.utils import to_file
+ class Delete(Action):
+     
+     def validate(self, expenses, args):
+-        try:
+-            test = expenses[0]
+-        except IndexError:
++        if expenses is None or len(expenses) == 0:
+             print("Notice: There are no expenses in the expense tracker. Use the command 'add' to create expenses.")
+             sys.exit(0)
+             return False
+@@ -24,6 +22,7 @@ class Delete(Action):
+             return True
+     
+     def run(self, expenses, args, file_path): #delete expense by popping list
++        self.validate(expenses, args)
+         del expenses[args.id-1]
+         to_file(expenses, file_path)
+         print(f"Expense deleted successfully. Use the 'list' action to view updated expense ID's")
+diff --git a/tools/action_update.py b/tools/action_update.py
+index 55a90eb..daafaa7 100644
+--- a/tools/action_update.py
++++ b/tools/action_update.py
+@@ -1,10 +1,10 @@
+ import sys
+-from datetime import date
+ from tools.action_base import Action
+ from tools.utils import check_date, to_file
+ 
+ class Update(Action):   
+     def validate(self, expenses, args):
++        # utils method for checking if expense exists
+         try:
+             test = expenses[0]
+         except IndexError:
+@@ -19,6 +19,8 @@ class Update(Action):
+         except IndexError:
+             print(f"Error: an expense with ID {args.id} does not exist")
+             return False
++        #---
++        # Arg parser required args check
+         if args.date == None and args.description == None and args.amount == None:
+             print(f"Error: one of the following arguments are required to update Expense ID {args.id}: --date, --description, --amount")
+             return False
+@@ -30,6 +32,7 @@ class Update(Action):
+             if args.amount < 0:
+                 print("Error: the amount for this expense must be a positive value")
+                 return False
++        #---
+         else:
+             return True
+ 
+diff --git a/tools/utils.py b/tools/utils.py
+index f9e9200..4118645 100644
+--- a/tools/utils.py
++++ b/tools/utils.py
+@@ -25,7 +25,7 @@ def load_expenses(file_path):    #reads json and returns data list
+ 
+ def check_date(date_str):    #changes date string from arg value into date obj
+     try:
+-        date_check = datetime.strptime(date_str, "%Y-%m-%d")
++        datetime.strptime(date_str, "%Y-%m-%d")
+         return True
+     except ValueError:
+         print("Date format must be YYYY-MM-DD.")

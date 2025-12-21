@@ -8,26 +8,33 @@ import tools.action_list as list_obj
 import tools.action_summary as summary_obj
 import tools.utils as utils
 
-data_folder = "data"    
-os.makedirs(data_folder, exist_ok=True)
-
-file_path = os.path.join(data_folder, 'expenses.json')
-if not os.path.exists(file_path):
-    # Create an empty expenses.json file if it doesn't exist
-    with open(file_path, 'w', encoding='utf-8') as f:
-        json.dump([], f)    #initialize as empty list ()
-
 parser = argparse.ArgumentParser()
+subparsers = parser.add_subparsers(dest='action', help='actions: add, update, delete, list, summary')
 
+parser_add = subparsers.add_parser('add', help='Add a new expense')
+parser_add.add_argument('--date', default=date.today().strftime("%Y-%m-%d"), type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
+parser_add.add_argument('--description', required = True, type=str, help = 'description of expense') 
+parser_add.add_argument('--amount', required = True, type=float, help = 'amount of expense')
 
-parser.add_argument('action', help='actions: add, update, delete, list, summary') #positional argument
-parser.add_argument('--date', type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
-parser.add_argument('--description', type=str, help = 'description of expense') #optional arguments
-parser.add_argument('--amount', type=float, help = 'amount of expense')
-parser.add_argument('--id', type=int, help = 'id number of expense')
-parser.add_argument('--month', type=int, help = 'month of summary')
+parser_update = subparsers.add_parser('update', help='Update an existing expense')
+parser_update.add_argument('--id', required=True, type=int, help = 'id number of expense')
+parser_update.add_argument('--date', type=str, help='date of expense (YYYY-MM-DD), current date used if not specified')
+parser_update.add_argument('--description', type=str, help = 'description of expense')
+parser_update.add_argument('--amount', type=float, help = 'amount of expense')
+
+parser_delete = subparsers.add_parser('delete', help='Deletes an existing expense')
+parser_delete.add_argument('--id', required=True, type=int, help = 'id number of expense')
+
+parser_list = subparsers.add_parser('list', help='Lists all existing expenses')
+
+parser_summary = subparsers.add_parser('summary', help="Returns a sum of all expenses or all expenses in a month if the argument '--month' is used")
+parser_summary.add_argument('--month', type=int, help = 'month of summary')
+
+parser_clear = subparsers.add_parser('clear', help='Clears all existing expenses')
+
 
 args = parser.parse_args()
+
 
 def main():
     #functionality 
