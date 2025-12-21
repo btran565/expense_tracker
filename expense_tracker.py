@@ -8,16 +8,6 @@ import tools.action_list as list_obj
 import tools.action_summary as summary_obj
 import tools.utils as utils
 
-# TODO: move to utils or separate data layer
-data_folder = "data"    
-os.makedirs(data_folder, exist_ok=True)
-
-file_path = os.path.join(data_folder, 'expenses.json')
-if not os.path.exists(file_path):
-    # Create an empty expenses.json file if it doesn't exist
-    with open(file_path, 'w', encoding='utf-8') as f:
-        json.dump([], f)    #initialize as empty list ()
-
 parser = argparse.ArgumentParser()
 subparsers = parser.add_subparsers(dest='action', help='actions: add, update, delete, list, summary')
 
@@ -39,6 +29,9 @@ parser_list = subparsers.add_parser('list', help='Lists all existing expenses')
 
 parser_summary = subparsers.add_parser('summary', help="Returns a sum of all expenses or all expenses in a month if the argument '--month' is used")
 parser_summary.add_argument('--month', type=int, help = 'month of summary')
+
+parser_clear = subparsers.add_parser('clear', help='Clears all existing expenses')
+
 
 args = parser.parse_args()
 
