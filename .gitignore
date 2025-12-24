@@ -3,3 +3,5 @@ notes.txt
 tools/__pycache__/
 **/__pycache__/
 **/.vscode/
+venv/
+.venv/
